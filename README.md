@@ -1,19 +1,19 @@
-# Testing.Acceptance
+# AcceptanceTesting.Core
 
 Core acceptance testing framework
 
-[![Publish NuGet Packages](https://github.com/AlmostCoherent/Testing.Acceptance/actions/workflows/nuget-publish.yml/badge.svg)](https://github.com/AlmostCoherent/Testing.Acceptance/actions/workflows/nuget-publish.yml)
+[![Publish NuGet Packages](https://github.com/AlmostCoherent/AcceptanceTesting.Core/actions/workflows/nuget-publish.yml/badge.svg)](https://github.com/AlmostCoherent/AcceptanceTesting.Core/actions/workflows/nuget-publish.yml)
 
 ## Overview
 
-This repository contains the Testing.Acceptance framework, a core library for acceptance testing in .NET applications.
+This repository contains the AcceptanceTesting.Core framework, a core library for acceptance testing in .NET applications.
 
 ## Installation
 
 ### From NuGet.org
 
 ```bash
-dotnet add package AlmostCoherent.Testing.Acceptance.Core
+dotnet add package AlmostCoherent.AcceptanceTesting.Core.Core
 ```
 
 ### From GitHub Packages
@@ -34,7 +34,7 @@ dotnet nuget add source --username USERNAME --password "%NUGET_AUTH_TOKEN%" --na
 Then install the package:
 
 ```bash
-dotnet add package AlmostCoherent.Testing.Acceptance.Core --source github
+dotnet add package AlmostCoherent.AcceptanceTesting.Core.Core --source github
 ```
 
 ## Building from Source
