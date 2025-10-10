@@ -1,4 +1,4 @@
-﻿namespace Testing.Acceptance.Core.Abstractions
+﻿namespace AcceptanceTesting.Core.Abstractions
 {
     public interface IContext
     {

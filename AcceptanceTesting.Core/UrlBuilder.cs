@@ -1,4 +1,4 @@
-﻿namespace Testing.Acceptance.Core
+﻿namespace AcceptanceTesting.Core
 {
     /// <summary>
     /// Builds a url from a given base url and a relative one

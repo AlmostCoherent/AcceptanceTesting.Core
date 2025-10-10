@@ -13,7 +13,7 @@ This repository contains the AcceptanceTesting.Core framework, a core library fo
 ### From NuGet.org
 
 ```bash
-dotnet add package AlmostCoherent.AcceptanceTesting.Core.Core
+dotnet add package AlmostCoherent.AcceptanceTesting.Core
 ```
 
 ### From GitHub Packages
@@ -34,7 +34,7 @@ dotnet nuget add source --username USERNAME --password "%NUGET_AUTH_TOKEN%" --na
 Then install the package:
 
 ```bash
-dotnet add package AlmostCoherent.AcceptanceTesting.Core.Core --source github
+dotnet add package AlmostCoherent.AcceptanceTesting.Core --source github
 ```
 
 ## Building from Source

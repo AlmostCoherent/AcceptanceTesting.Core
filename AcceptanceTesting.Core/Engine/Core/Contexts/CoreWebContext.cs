@@ -1,11 +1,11 @@
-﻿using System;
+﻿using AcceptanceTesting.Core.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Testing.Acceptance.Core.Abstractions;
 
-namespace Testing.Acceptance.Core.Engine.Core.Contexts
+namespace AcceptanceTesting.Core.Engine.Core.Contexts
 {
     public class CoreWebContext : IContext
     {

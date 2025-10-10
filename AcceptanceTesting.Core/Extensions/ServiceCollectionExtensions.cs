@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Testing.Acceptance.Core.Extensions
+namespace AcceptanceTesting.Core.Extensions
 {
     public static class ServiceCollectionExtensions
     {

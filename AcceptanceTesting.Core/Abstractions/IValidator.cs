@@ -1,4 +1,4 @@
-﻿namespace Testing.Acceptance.Core.Abstractions
+﻿namespace AcceptanceTesting.Core.Abstractions
 {
     /// <summary>
     /// Marker interface for a testing engine validator.

@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Testing.Acceptance.Core.Infrastructure.Playwright
+namespace AcceptanceTesting.Core.Infrastructure.Playwright
 {
     /// <summary>
     /// Provides a playwright page <see cref="IPage"/>

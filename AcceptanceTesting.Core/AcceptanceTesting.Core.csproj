@@ -4,16 +4,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <DefaultNamespace>AlmostCoherent.Testing.Acceptance.Core</DefaultNamespace>
+    <DefaultNamespace>AlmostCoherent.AcceptanceTesting.Core</DefaultNamespace>
 
     <!-- NuGet metadata -->
-    <PackageId>AlmostCoherent.Testing.Acceptance.Core</PackageId>
+    <PackageId>AlmostCoherent.AcceptanceTesting.Core</PackageId>
     <Version>1.0.0</Version>
     <Authors>Ben Harman</Authors>
     <Company>Almost Coherent Software</Company>
     <Description>The Testing.Core project provides core testing functionality that can be reused across different acceptance projects. This ensures consistency and reduces duplication when writing tests for multiple applications.</Description>
     <PackageTags>testing;playwright;</PackageTags>
-    <RepositoryUrl>https://github.com/AlmostCoherent/AcceptanceTestingLibrary</RepositoryUrl>
+    <RepositoryUrl>https://github.com/AlmostCoherent/AcceptanceTesting.Core</RepositoryUrl>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 

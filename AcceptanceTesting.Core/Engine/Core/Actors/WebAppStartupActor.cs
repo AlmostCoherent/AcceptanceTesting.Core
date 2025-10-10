@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Testing.Acceptance.Core.Abstractions;
-using Testing.Acceptance.Core.Infrastructure.Playwright;
+﻿using AcceptanceTesting.Core.Abstractions;
+using AcceptanceTesting.Core.Infrastructure.Playwright;
+using System.Threading.Tasks;
 
-namespace Testing.Acceptance.Core.Engine.Core.Actors
+namespace AcceptanceTesting.Core.Engine.Core.Actors
 {
     public class WebAppStartupActor : IActor
     {
