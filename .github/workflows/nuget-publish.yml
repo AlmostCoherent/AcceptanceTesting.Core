@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNET_VERSION: '9.0.x'
+  DOTNET_VERSION: '8.0.x'
   CONFIGURATION: Release
 
 jobs:
@@ -31,16 +31,16 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
     
     - name: Restore dependencies
-      run: dotnet restore Testing.Acceptance.sln
+      run: dotnet restore AcceptanceTesting.Core.sln
     
     - name: Build solution
-      run: dotnet build Testing.Acceptance.sln --configuration ${{ env.CONFIGURATION }} --no-restore
-    
+      run: dotnet build AcceptanceTesting.Core.sln --configuration ${{ env.CONFIGURATION }} --no-restore
+
     - name: Run tests
-      run: dotnet test Testing.Acceptance.sln --configuration ${{ env.CONFIGURATION }} --no-build --verbosity normal
-    
+      run: dotnet test AcceptanceTesting.Core.sln --configuration ${{ env.CONFIGURATION }} --no-build --verbosity normal
+
     - name: Pack NuGet packages
-      run: dotnet pack Testing.Acceptance.sln --configuration ${{ env.CONFIGURATION }} --no-build --output ./nupkgs
+      run: dotnet pack AcceptanceTesting.Core.sln --configuration ${{ env.CONFIGURATION }} --no-build --output ./nupkgs
     
     - name: Upload NuGet packages as artifacts
       uses: actions/upload-artifact@v4
