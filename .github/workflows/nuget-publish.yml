@@ -68,4 +68,4 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
     
     - name: Push NuGet package to GitHub Packages
-      run: dotnet nuget push "./nupkgs/*.nupkg" --source "github" --api-key "${{ secrets.GITHUB_TOKEN }}"
+      run: dotnet nuget push "./nupkgs/*.nupkg" --source "https://nuget.pkg.github.com/AlmostCoherent/index.json" --api-key "${{ secrets.GITHUB_TOKEN }}"
