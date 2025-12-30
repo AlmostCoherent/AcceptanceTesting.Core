@@ -39,8 +39,25 @@ jobs:
     - name: Run tests
       run: dotnet test AcceptanceTesting.Core.sln --configuration ${{ env.CONFIGURATION }} --no-build --verbosity normal
 
+    - name: Create output directory
+      run: mkdir -p ./nupkgs
+
     - name: Pack NuGet packages (IsPackable=true projects only)
-      run: dotnet msbuild AcceptanceTesting.Core.sln -t:Pack -p:Configuration=${{ env.CONFIGURATION }} -p:PackageOutputPath=./nupkgs -p:NoBuild=true -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+      run: |
+        # Pack only projects marked as IsPackable=true
+        dotnet pack AcceptanceTesting.Core.sln \
+          --configuration ${{ env.CONFIGURATION }} \
+          --no-build \
+          --output ./nupkgs \
+          --include-symbols \
+          -p:SymbolPackageFormat=snupkg \
+          --verbosity normal
+    
+    - name: List packed files (for debugging)
+      run: |
+        echo "Contents of nupkgs directory:"
+        ls -la ./nupkgs/ || echo "nupkgs directory not found or empty"
+        find . -name "*.nupkg" -o -name "*.snupkg" | head -20
     
     - name: Upload NuGet packages as artifacts
       uses: actions/upload-artifact@v4
