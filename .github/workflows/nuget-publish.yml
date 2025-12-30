@@ -36,27 +36,72 @@ jobs:
     - name: Build solution using MSBuild
       run: dotnet msbuild AcceptanceTesting.Core.sln -p:Configuration=${{ env.CONFIGURATION }} -p:RestorePackages=false
 
+    - name: Check build outputs
+      run: |
+        echo "Checking build outputs for packable projects:"
+        ls -la AcceptanceTesting.Core/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "AcceptanceTesting.Core build output not found"
+        ls -la ScreenPlayFramework/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "ScreenPlayFramework build output not found"  
+        ls -la Playwright/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "Playwright build output not found"
+        ls -la Hosting/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "Hosting build output not found"
+
     - name: Run tests
       run: dotnet test AcceptanceTesting.Core.sln --configuration ${{ env.CONFIGURATION }} --no-build --verbosity normal
 
     - name: Create output directory
       run: mkdir -p ./nupkgs
 
-    - name: Pack NuGet packages (IsPackable=true projects only)
+    - name: Pack NuGet packages individually (IsPackable=true projects only)
       run: |
-        # Pack only projects marked as IsPackable=true
-        dotnet pack AcceptanceTesting.Core.sln \
+        echo "Packing individual projects with IsPackable=true..."
+        
+        # Pack projects in dependency order: Playwright first (no deps), then ScreenPlayFramework (depends on Playwright)
+        echo "Packing Playwright..."
+        dotnet pack Playwright/Playwright.csproj \
           --configuration ${{ env.CONFIGURATION }} \
-          --no-build \
           --output ./nupkgs \
           --include-symbols \
           -p:SymbolPackageFormat=snupkg \
-          --verbosity normal
+          --verbosity detailed || echo "Failed to pack Playwright"
+        
+        echo "Packing Hosting..."
+        dotnet pack Hosting/Hosting.csproj \
+          --configuration ${{ env.CONFIGURATION }} \
+          --output ./nupkgs \
+          --include-symbols \
+          -p:SymbolPackageFormat=snupkg \
+          --verbosity detailed || echo "Failed to pack Hosting"
+        
+        echo "Packing AcceptanceTesting.Core..."
+        dotnet pack AcceptanceTesting.Core/AcceptanceTesting.Core.csproj \
+          --configuration ${{ env.CONFIGURATION }} \
+          --output ./nupkgs \
+          --include-symbols \
+          -p:SymbolPackageFormat=snupkg \
+          --verbosity detailed || echo "Failed to pack AcceptanceTesting.Core"
+        
+        echo "Packing ScreenPlayFramework..."
+        dotnet pack ScreenPlayFramework/ScreenPlayFramework.csproj \
+          --configuration ${{ env.CONFIGURATION }} \
+          --output ./nupkgs \
+          --include-symbols \
+          -p:SymbolPackageFormat=snupkg \
+          --verbosity detailed || echo "Failed to pack ScreenPlayFramework"
+    
+    - name: List all projects and their IsPackable status
+      run: |
+        echo "Checking IsPackable status for all projects:"
+        find . -name "*.csproj" -exec grep -l "IsPackable" {} \; | while read proj; do
+          echo "Project: $proj"
+          grep -A1 -B1 "IsPackable" "$proj" || echo "No IsPackable found"
+          echo "---"
+        done
     
     - name: List packed files (for debugging)
       run: |
         echo "Contents of nupkgs directory:"
         ls -la ./nupkgs/ || echo "nupkgs directory not found or empty"
+        echo ""
+        echo "All .nupkg and .snupkg files in workspace:"
         find . -name "*.nupkg" -o -name "*.snupkg" | head -20
     
     - name: Upload NuGet packages as artifacts
