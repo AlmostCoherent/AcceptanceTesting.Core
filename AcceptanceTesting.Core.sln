@@ -3,25 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTesting.Core", "AcceptanceTesting.Core\AcceptanceTesting.Core.csproj", "{C8C3ABBF-168C-4405-BFF6-14351FCBD60B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		Hosting\Hosting.csproj = Hosting\Hosting.csproj
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hosting", "Hosting\Hosting.csproj", "{EA9A1917-A3D1-4CB5-090A-E0A5EAC4BC20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hosting", "src\Hosting\Hosting.csproj", "{EA9A1917-A3D1-4CB5-090A-E0A5EAC4BC20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hosting.Tests", "Hosting.Tests\Hosting.Tests.csproj", "{7003B770-6942-6C0F-8642-4964848A419C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hosting.Tests", "src\Hosting.Tests\Hosting.Tests.csproj", "{7003B770-6942-6C0F-8642-4964848A419C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright", "Playwright\Playwright.csproj", "{84E451E3-330A-2B31-8A1E-BED9E897A2DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright", "src\Playwright\Playwright.csproj", "{84E451E3-330A-2B31-8A1E-BED9E897A2DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Tests", "Playwright.Tests\Playwright.Tests.csproj", "{31F965B3-7591-0FCA-6624-21B7DF003FCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Tests", "src\Playwright.Tests\Playwright.Tests.csproj", "{31F965B3-7591-0FCA-6624-21B7DF003FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenPlayFramework", "ScreenPlayFramework\ScreenPlayFramework.csproj", "{FF899F94-22F0-C798-52F1-F449E1692019}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenPlayFramework", "src\ScreenPlayFramework\ScreenPlayFramework.csproj", "{FF899F94-22F0-C798-52F1-F449E1692019}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenPlayFramework.Tests", "ScreenPlayFramework.Tests\ScreenPlayFramework.Tests.csproj", "{1B3852DA-F933-5595-579D-9997D240A900}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenPlayFramework.Tests", "src\ScreenPlayFramework.Tests\ScreenPlayFramework.Tests.csproj", "{1B3852DA-F933-5595-579D-9997D240A900}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTesting.Core", "src\AcceptanceTesting.Core\AcceptanceTesting.Core.csproj", "{0A7A261B-77FD-DFAC-04EA-77395A98FE60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{EBE29495-87F9-4A47-B23D-0B3AAF2630C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet_api", "dotnet_api", "{7B14440D-1DF9-4DA1-9062-FA1BE0F9A5DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "demos\dotnet_api\Api\Api.csproj", "{55FAD8A9-DEB0-823E-31E9-5E0B833C7AD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Acceptance", "demos\dotnet_api\Api.Acceptance\Api.Acceptance.csproj", "{983678DA-555E-D037-D95A-BCE35CDE709F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +37,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C8C3ABBF-168C-4405-BFF6-14351FCBD60B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8C3ABBF-168C-4405-BFF6-14351FCBD60B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8C3ABBF-168C-4405-BFF6-14351FCBD60B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8C3ABBF-168C-4405-BFF6-14351FCBD60B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA9A1917-A3D1-4CB5-090A-E0A5EAC4BC20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA9A1917-A3D1-4CB5-090A-E0A5EAC4BC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA9A1917-A3D1-4CB5-090A-E0A5EAC4BC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,9 +61,26 @@ Global
 		{1B3852DA-F933-5595-579D-9997D240A900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B3852DA-F933-5595-579D-9997D240A900}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B3852DA-F933-5595-579D-9997D240A900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7A261B-77FD-DFAC-04EA-77395A98FE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7A261B-77FD-DFAC-04EA-77395A98FE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7A261B-77FD-DFAC-04EA-77395A98FE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7A261B-77FD-DFAC-04EA-77395A98FE60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55FAD8A9-DEB0-823E-31E9-5E0B833C7AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55FAD8A9-DEB0-823E-31E9-5E0B833C7AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55FAD8A9-DEB0-823E-31E9-5E0B833C7AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55FAD8A9-DEB0-823E-31E9-5E0B833C7AD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983678DA-555E-D037-D95A-BCE35CDE709F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983678DA-555E-D037-D95A-BCE35CDE709F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983678DA-555E-D037-D95A-BCE35CDE709F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983678DA-555E-D037-D95A-BCE35CDE709F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7B14440D-1DF9-4DA1-9062-FA1BE0F9A5DA} = {EBE29495-87F9-4A47-B23D-0B3AAF2630C5}
+		{55FAD8A9-DEB0-823E-31E9-5E0B833C7AD8} = {7B14440D-1DF9-4DA1-9062-FA1BE0F9A5DA}
+		{983678DA-555E-D037-D95A-BCE35CDE709F} = {7B14440D-1DF9-4DA1-9062-FA1BE0F9A5DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E4A6731-6163-4DF1-B26C-57A00CFDEC5F}

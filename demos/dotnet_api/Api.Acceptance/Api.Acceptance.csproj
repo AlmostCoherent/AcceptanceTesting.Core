@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsTestProject>true</IsTestProject>
+		<RootNamespace>NorthStandard.Testing.Demos.Api.Acceptance</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="~\**" />
+	  <EmbeddedResource Remove="~\**" />
+	  <None Remove="~\**" />
+	  <ReqnrollFeatureFiles Remove="~\**" />
+	  <ReqnrollObsoleteCodeBehindFiles Remove="~\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="appsettings.Development.json" />
+		<None Remove="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="appsettings.Development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="7.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.16" />
+		<PackageReference Include="coverlet.collector" Version="6.0.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+		<PackageReference Include="Microsoft.Playwright.MSTest" Version="1.52.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.8.3" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.8.3" />
+		<PackageReference Include="Reqnroll" Version="2.4.1" />
+		<PackageReference Include="Reqnroll.Microsoft.Extensions.DependencyInjection" Version="2.4.1" />
+		<PackageReference Include="Reqnroll.MsTest" Version="2.4.1" />
+		<PackageReference Include="Reqnroll.SpecFlowCompatibility" Version="2.4.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ReqnrollFeatureFiles Update="Specs\Features\WeatherForecast.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </ReqnrollFeatureFiles>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\src\ScreenPlayFramework\ScreenPlayFramework.csproj" />
+	  <ProjectReference Include="..\Api\Api.csproj" />
+	</ItemGroup>
+</Project>

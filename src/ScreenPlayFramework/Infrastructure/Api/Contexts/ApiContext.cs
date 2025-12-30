@@ -1,10 +1,11 @@
 ﻿using NorthStandard.Testing.Playwright.Application.Services;
+using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
 using System;
 using System.Net.Http;
 
 namespace NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Api.Contexts
 {
-    public class ApiContext(UrlBuilder urlBuilder) : IDisposable
+    public class ApiContext(UrlBuilder urlBuilder) : IDisposable, IContext
     {
         public HttpClient? Client { get; private set; }
         private HttpMessageHandler? handler;
