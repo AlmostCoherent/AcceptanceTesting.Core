@@ -8,7 +8,7 @@
 
     <!-- NuGet metadata -->
     <PackageId>AlmostCoherent.AcceptanceTesting.Core</PackageId>
-    <Version>1.0.0</Version>
+    <!-- Version will be set by GitVersion during build -->
     <Authors>Ben Harman</Authors>
     <Company>Almost Coherent Software</Company>
     <Description>The Testing.Core project provides core testing functionality that can be reused across different acceptance projects. This ensures consistency and reduces duplication when writing tests for multiple applications.</Description>

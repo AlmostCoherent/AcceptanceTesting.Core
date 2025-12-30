@@ -30,6 +30,26 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
     
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v3.0.0
+      with:
+        versionSpec: '6.x'
+        
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v3.0.0
+      id: gitversion
+      with:
+        useConfigFile: true
+        
+    - name: Display GitVersion outputs
+      run: |
+        echo "NuGetVersion: ${{ steps.gitversion.outputs.nuGetVersion }}"
+        echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+        echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
+        echo "InformationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}"
+        echo "BranchName: ${{ steps.gitversion.outputs.branchName }}"
+        echo "Sha: ${{ steps.gitversion.outputs.sha }}"
+    
     - name: Restore dependencies
       run: dotnet restore AcceptanceTesting.Core.sln
     
@@ -53,6 +73,7 @@ jobs:
     - name: Pack NuGet packages individually (IsPackable=true projects only)
       run: |
         echo "Packing individual projects with IsPackable=true..."
+        echo "Using version: ${{ steps.gitversion.outputs.nuGetVersion }}"
         
         # Pack projects in dependency order: Playwright first (no deps), then ScreenPlayFramework (depends on Playwright)
         echo "Packing Playwright..."
@@ -61,6 +82,10 @@ jobs:
           --output ./nupkgs \
           --include-symbols \
           -p:SymbolPackageFormat=snupkg \
+          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
+          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
+          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
+          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
           --verbosity detailed || echo "Failed to pack Playwright"
         
         echo "Packing Hosting..."
@@ -69,6 +94,10 @@ jobs:
           --output ./nupkgs \
           --include-symbols \
           -p:SymbolPackageFormat=snupkg \
+          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
+          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
+          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
+          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
           --verbosity detailed || echo "Failed to pack Hosting"
         
         echo "Packing AcceptanceTesting.Core..."
@@ -77,6 +106,10 @@ jobs:
           --output ./nupkgs \
           --include-symbols \
           -p:SymbolPackageFormat=snupkg \
+          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
+          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
+          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
+          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
           --verbosity detailed || echo "Failed to pack AcceptanceTesting.Core"
         
         echo "Packing ScreenPlayFramework..."
@@ -85,6 +118,10 @@ jobs:
           --output ./nupkgs \
           --include-symbols \
           -p:SymbolPackageFormat=snupkg \
+          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
+          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
+          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
+          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
           --verbosity detailed || echo "Failed to pack ScreenPlayFramework"
     
     - name: List all projects and their IsPackable status

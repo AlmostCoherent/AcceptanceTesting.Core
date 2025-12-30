@@ -8,7 +8,7 @@
 
     <!-- NuGet metadata -->
     <PackageId>NorthStandard.Testing.ScreenPlayFramework</PackageId>
-    <Version>1.0.0</Version>
+    <!-- Version will be set by GitVersion during build -->
     <Description>This project contains a testing framework for .NET applications. This is based on the more traditional ScreenPlay methodology of testing.</Description>
     <PackageTags>testing;screenplay;</PackageTags>
     <IsPackable>true</IsPackable>
