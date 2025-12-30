@@ -1,10 +1,4 @@
-﻿<Project    <!-- NuGet metadata -->
-    <PackageId>NorthStandard.Testing.Playwright</PackageId>
-    <!-- Version will be set by GitVersion during build -->
-    <Description>This project provides Playwright testing utilities for .NET based applications.</Description>
-    <PackageTags>testing;playwright;</PackageTags>
-    <IsPackable>true</IsPackable>Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
@@ -13,7 +7,6 @@
 
     <!-- NuGet metadata -->
     <PackageId>NorthStandard.Testing.Playwright</PackageId>
-    <Version>1.0.1</Version>
     <Description>This project provides Playwright testing utilities for .NET based applications.</Description>
     <PackageTags>testing;playwright;</PackageTags>
     <IsPackable>true</IsPackable>

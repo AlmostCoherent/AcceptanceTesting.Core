@@ -1,9 +1,4 @@
-﻿<Project    <!-- NuGet metadata -->
-    <PackageId>NorthStandard.Testing.Hosting</PackageId>
-    <!-- Version will be set by GitVersion during build -->
-    <Description>This project contains testing utilities used for hosting applications.</Description>
-    <PackageTags>testing;</PackageTags>
-    <IsPackable>true</IsPackable>Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -11,9 +6,7 @@
     <Nullable>enable</Nullable>
     <DefaultNamespace>NorthStandard.Testing.Hosting</DefaultNamespace>
 
-    <!-- NuGet metadata -->
     <PackageId>NorthStandard.Testing.Hosting</PackageId>
-    <Version>1.0.1</Version>
     <Description>This project contains testing utilities used for hosting applications.</Description>
     <PackageTags>testing;</PackageTags>
     <IsPackable>true</IsPackable>
