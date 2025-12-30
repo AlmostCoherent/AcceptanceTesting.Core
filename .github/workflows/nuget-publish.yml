@@ -59,10 +59,20 @@ jobs:
     - name: Check build outputs
       run: |
         echo "Checking build outputs for packable projects:"
-        ls -la AcceptanceTesting.Core/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "AcceptanceTesting.Core build output not found"
-        ls -la ScreenPlayFramework/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "ScreenPlayFramework build output not found"  
-        ls -la Playwright/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "Playwright build output not found"
-        ls -la Hosting/bin/${{ env.CONFIGURATION }}/net8.0/ || echo "Hosting build output not found"
+        find . -name "*.csproj" | while read proj; do
+          if grep -q "<IsPackable>true</IsPackable>" "$proj" 2>/dev/null; then
+            project_name=$(basename "$proj" .csproj)
+            project_dir=$(dirname "$proj")
+            output_dir="$project_dir/bin/${{ env.CONFIGURATION }}/net8.0/"
+            if [ -d "$output_dir" ]; then
+              echo "✅ $project_name: Build output found at $output_dir"
+              ls -la "$output_dir" | head -5
+            else
+              echo "❌ $project_name: Build output not found at $output_dir"
+            fi
+            echo "---"
+          fi
+        done
 
     - name: Run tests
       run: dotnet test AcceptanceTesting.Core.sln --configuration ${{ env.CONFIGURATION }} --no-build --verbosity normal
@@ -70,76 +80,89 @@ jobs:
     - name: Create output directory
       run: mkdir -p ./nupkgs
 
-    - name: Pack NuGet packages individually (IsPackable=true projects only)
+    - name: Discover and pack all IsPackable projects
       run: |
-        echo "Packing individual projects with IsPackable=true..."
+        echo "Auto-discovering projects with IsPackable=true..."
         echo "Using version: ${{ steps.gitversion.outputs.nuGetVersion }}"
         
-        # Pack projects in dependency order: Playwright first (no deps), then ScreenPlayFramework (depends on Playwright)
-        echo "Packing Playwright..."
-        dotnet pack Playwright/Playwright.csproj \
-          --configuration ${{ env.CONFIGURATION }} \
-          --output ./nupkgs \
-          --include-symbols \
-          -p:SymbolPackageFormat=snupkg \
-          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
-          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
-          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
-          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
-          --verbosity detailed || echo "Failed to pack Playwright"
+        # Find all .csproj files that have IsPackable=true
+        packable_projects=$(grep -l "<IsPackable>true</IsPackable>" **/*.csproj 2>/dev/null || true)
         
-        echo "Packing Hosting..."
-        dotnet pack Hosting/Hosting.csproj \
-          --configuration ${{ env.CONFIGURATION }} \
-          --output ./nupkgs \
-          --include-symbols \
-          -p:SymbolPackageFormat=snupkg \
-          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
-          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
-          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
-          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
-          --verbosity detailed || echo "Failed to pack Hosting"
+        if [ -z "$packable_projects" ]; then
+          echo "No projects found with IsPackable=true"
+          exit 1
+        fi
         
-        echo "Packing AcceptanceTesting.Core..."
-        dotnet pack AcceptanceTesting.Core/AcceptanceTesting.Core.csproj \
-          --configuration ${{ env.CONFIGURATION }} \
-          --output ./nupkgs \
-          --include-symbols \
-          -p:SymbolPackageFormat=snupkg \
-          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
-          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
-          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
-          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
-          --verbosity detailed || echo "Failed to pack AcceptanceTesting.Core"
-        
-        echo "Packing ScreenPlayFramework..."
-        dotnet pack ScreenPlayFramework/ScreenPlayFramework.csproj \
-          --configuration ${{ env.CONFIGURATION }} \
-          --output ./nupkgs \
-          --include-symbols \
-          -p:SymbolPackageFormat=snupkg \
-          -p:Version=${{ steps.gitversion.outputs.nuGetVersion }} \
-          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
-          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
-          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }} \
-          --verbosity detailed || echo "Failed to pack ScreenPlayFramework"
-    
-    - name: List all projects and their IsPackable status
-      run: |
-        echo "Checking IsPackable status for all projects:"
-        find . -name "*.csproj" -exec grep -l "IsPackable" {} \; | while read proj; do
-          echo "Project: $proj"
-          grep -A1 -B1 "IsPackable" "$proj" || echo "No IsPackable found"
-          echo "---"
-        done
-    
-    - name: List packed files (for debugging)
-      run: |
-        echo "Contents of nupkgs directory:"
-        ls -la ./nupkgs/ || echo "nupkgs directory not found or empty"
+        echo "Found packable projects:"
+        echo "$packable_projects"
         echo ""
-        echo "All .nupkg and .snupkg files in workspace:"
-        find . -name "*.nupkg" -o -name "*.snupkg" | head -20
+        
+        # Create an array to track success/failure
+        declare -A pack_results
+        total_projects=0
+        successful_packs=0
+        
+        # Pack each project
+        while IFS= read -r project; do
+          if [ ! -z "$project" ]; then
+            project_name=$(basename "$project" .csproj)
+            project_dir=$(dirname "$project")
+            total_projects=$((total_projects + 1))
+            
+            echo "=========================================="
+            echo "Packing: $project_name"
+            echo "Project file: $project"
+            echo "Directory: $project_dir"
+            echo "=========================================="
+            
+            if dotnet pack "$project" \
+              --configuration ${{ env.CONFIGURATION }} \
+              --output ./nupkgs \
+              --include-symbols \
+              -p:SymbolPackageFormat=snupkg \
+              -p:Version="${{ steps.gitversion.outputs.nuGetVersion }}" \
+              -p:AssemblyVersion="${{ steps.gitversion.outputs.assemblySemVer }}" \
+              -p:FileVersion="${{ steps.gitversion.outputs.assemblySemFileVer }}" \
+              -p:InformationalVersion="${{ steps.gitversion.outputs.informationalVersion }}" \
+              --verbosity normal; then
+              
+              echo "✅ Successfully packed: $project_name"
+              pack_results["$project_name"]="SUCCESS"
+              successful_packs=$((successful_packs + 1))
+            else
+              echo "❌ Failed to pack: $project_name"
+              pack_results["$project_name"]="FAILED"
+            fi
+            echo ""
+          fi
+        done <<< "$packable_projects"
+        
+        echo "=========================================="
+        echo "PACKING SUMMARY"
+        echo "=========================================="
+        echo "Total projects found: $total_projects"
+        echo "Successfully packed: $successful_packs"
+        echo "Failed: $((total_projects - successful_packs))"
+        echo ""
+        
+        for project in "${!pack_results[@]}"; do
+          status="${pack_results[$project]}"
+          if [ "$status" = "SUCCESS" ]; then
+            echo "✅ $project"
+          else
+            echo "❌ $project"
+          fi
+        done
+        
+        echo ""
+        echo "Packages created:"
+        ls -la ./nupkgs/ 2>/dev/null || echo "No packages found"
+        
+        # Exit with error if no projects were successfully packed
+        if [ "$successful_packs" -eq 0 ]; then
+          echo "ERROR: No projects were successfully packed!"
+          exit 1
+        fi
     
     - name: Upload NuGet packages as artifacts
       uses: actions/upload-artifact@v4
