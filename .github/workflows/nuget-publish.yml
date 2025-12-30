@@ -59,14 +59,14 @@ jobs:
     - name: Check build outputs
       run: |
         echo "Checking build outputs for packable projects:"
-        find . -name "*.csproj" | while read proj; do
+        find . -name "*.csproj" -type f | while read proj; do
           if grep -q "<IsPackable>true</IsPackable>" "$proj" 2>/dev/null; then
             project_name=$(basename "$proj" .csproj)
             project_dir=$(dirname "$proj")
             output_dir="$project_dir/bin/${{ env.CONFIGURATION }}/net8.0/"
             if [ -d "$output_dir" ]; then
               echo "✅ $project_name: Build output found at $output_dir"
-              ls -la "$output_dir" | head -5
+              ls -la "$output_dir" | head -3
             else
               echo "❌ $project_name: Build output not found at $output_dir"
             fi
@@ -86,10 +86,16 @@ jobs:
         echo "Using version: ${{ steps.gitversion.outputs.nuGetVersion }}"
         
         # Find all .csproj files that have IsPackable=true
-        packable_projects=$(grep -l "<IsPackable>true</IsPackable>" **/*.csproj 2>/dev/null || true)
+        # Search in both root and src directories
+        packable_projects=$(find . -name "*.csproj" -type f -exec grep -l "<IsPackable>true</IsPackable>" {} \; 2>/dev/null | sort)
         
         if [ -z "$packable_projects" ]; then
           echo "No projects found with IsPackable=true"
+          echo "Searching for all .csproj files to debug..."
+          find . -name "*.csproj" -type f | head -10
+          echo ""
+          echo "Checking IsPackable patterns in found projects..."
+          find . -name "*.csproj" -type f -exec grep -H -i "ispackable" {} \; | head -10
           exit 1
         fi
         
