@@ -29,7 +29,7 @@ namespace NorthStandard.Testing.Playwright.Infrastructure.Hooks
         public async Task BeforeScenarioStartTracing()
         {
             // Skip if profile is disabled or tracing is disabled
-            if (!_configuration.IsEnabled || !_configuration.EnableTracing)
+            if (!_configuration.EnableCaptureForFailingTests || !_configuration.EnableTracing)
                 return;
 
             var page = _pageProvider.GetPage();
@@ -50,7 +50,7 @@ namespace NorthStandard.Testing.Playwright.Infrastructure.Hooks
         public async Task AfterScenarioHandleTestResults()
         {
             // Skip if profile is disabled
-            if (!_configuration.IsEnabled)
+            if (!_configuration.EnableCaptureForFailingTests)
                 return;
 
             var page = _pageProvider.GetPage();

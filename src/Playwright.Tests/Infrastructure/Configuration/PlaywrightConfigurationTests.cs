@@ -13,7 +13,7 @@ namespace NorthStandard.Testing.Playwright.Tests.Infrastructure.Configuration
             var config = new PlaywrightConfiguration();
 
             // Assert
-            config.IsEnabled.Should().BeTrue();
+            config.EnableCaptureForFailingTests.Should().BeTrue();
             config.EnableHeadlessBrowser.Should().BeFalse(); // Default value
             config.WaitTimeOut.Should().Be(10000);
             config.EnableTracing.Should().BeFalse(); // Default value
@@ -30,10 +30,10 @@ namespace NorthStandard.Testing.Playwright.Tests.Infrastructure.Configuration
             var config = new PlaywrightConfiguration();
 
             // Act
-            config.IsEnabled = false;
+            config.EnableCaptureForFailingTests = false;
 
             // Assert
-            config.IsEnabled.Should().BeFalse();
+            config.EnableCaptureForFailingTests.Should().BeFalse();
         }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace NorthStandard.Testing.Playwright.Tests.Infrastructure.Configuration
             var config = new PlaywrightConfiguration();
 
             // Act
-            config.IsEnabled = true;
+            config.EnableCaptureForFailingTests = true;
             config.EnableHeadlessBrowser = true;
             config.WaitTimeOut = 15000;
             config.EnableTracing = true;
@@ -150,7 +150,7 @@ namespace NorthStandard.Testing.Playwright.Tests.Infrastructure.Configuration
             };
 
             // Assert
-            config.IsEnabled.Should().BeTrue();
+            config.EnableCaptureForFailingTests.Should().BeTrue();
             config.EnableHeadlessBrowser.Should().BeTrue();
             config.WaitTimeOut.Should().Be(15000);
             config.EnableTracing.Should().BeTrue();

@@ -2,10 +2,10 @@ namespace NorthStandard.Testing.Playwright.Infrastructure.Configuration
 {
     public class PlaywrightConfiguration
     {
-        public bool IsEnabled { get; set; } = true;
         public bool EnableHeadlessBrowser { get; set; }
         public int WaitTimeOut { get; set; } = 10000;
         public bool EnableTracing { get; set; }
+        public bool EnableCaptureForFailingTests { get; set; } = true;
         public bool CaptureScreenshots { get; set; }
         public bool FullPageScreenshots { get; set; }
         public string ArtifactsPath { get; set; } = "TestResults";
