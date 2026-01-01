@@ -35,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet_web", "dotnet_web", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "demos\dotnet_web\Web\Web.csproj", "{370421A8-F4A2-4D59-B82E-9A1D56DBB6A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Acceptance", "demos\dotnet_web\Web.Acceptanct\Web.Acceptance.csproj", "{488C35C8-3F93-4721-B9C4-FF50C7BF9647}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Acceptance", "demos\dotnet_web\Web.Acceptance\Web.Acceptance.csproj", "{488C35C8-3F93-4721-B9C4-FF50C7BF9647}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
