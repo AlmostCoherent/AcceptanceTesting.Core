@@ -56,6 +56,9 @@ jobs:
     - name: Build solution using MSBuild
       run: dotnet msbuild AcceptanceTesting.Core.sln -p:Configuration=${{ env.CONFIGURATION }} -p:RestorePackages=false
 
+    - name: Install Playwright browsers
+      run: pwsh src/Playwright.Tests/bin/${{ env.CONFIGURATION }}/net8.0/playwright.ps1 install --with-deps
+
     - name: Check build outputs
       run: |
         echo "Checking build outputs for packable projects:"
