@@ -4,6 +4,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <DefaultNamespace>NorthStandard.Testing.Playwright.Reqnroll</DefaultNamespace>
+    <IsTestProject>false</IsTestProject>
 
     <!-- NuGet metadata -->
     <PackageId>NorthStandard.Testing.Playwright.Reqnroll</PackageId>
