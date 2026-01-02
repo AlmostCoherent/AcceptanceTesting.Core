@@ -36,18 +36,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="7.2.0" />
+    <PackageReference Include="FluentAssertions" Version="8.8.0" />
     <PackageReference Include="coverlet.collector" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.8.3" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.8.3" />
-    <PackageReference Include="Reqnroll" Version="2.4.1" />
-    <PackageReference Include="Reqnroll.Microsoft.Extensions.DependencyInjection" Version="2.4.1" />
-    <PackageReference Include="Reqnroll.MsTest" Version="2.4.1" />
-    <PackageReference Include="Reqnroll.SpecFlowCompatibility" Version="2.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="4.0.2" />
+    <PackageReference Include="MSTest.TestFramework" Version="4.0.2" />
+    <PackageReference Include="Reqnroll" Version="3.3.0" />
+    <PackageReference Include="Reqnroll.Microsoft.Extensions.DependencyInjection" Version="3.3.0" />
+    <PackageReference Include="Reqnroll.MsTest" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +58,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\ScreenPlayFramework\ScreenPlayFramework.csproj" />
+    <ProjectReference Include="..\..\..\src\Playwright.Reqnroll\Playwright.Reqnroll.csproj" />
     <ProjectReference Include="..\Api\Api.csproj" />
   </ItemGroup>
 </Project>

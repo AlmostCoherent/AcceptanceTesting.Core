@@ -1,5 +1,5 @@
 using AcceptanceTesting.Api.Converters;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 namespace AcceptanceTesting.Api
 {
@@ -42,8 +42,8 @@ namespace AcceptanceTesting.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestPlay.Api", Version = "v1" });
 
                 // Map DateOnly and nullable DateOnly to a date string in the OpenAPI schema
-                c.MapType<DateOnly>(() => new OpenApiSchema { Type = "string", Format = "date" });
-                c.MapType<DateOnly?>(() => new OpenApiSchema { Type = "string", Format = "date" });
+                c.MapType<DateOnly>(() => new OpenApiSchema { Type = JsonSchemaType.String, Format = "date" });
+                c.MapType<DateOnly?>(() => new OpenApiSchema { Type = JsonSchemaType.String, Format = "date" });
             });
 
             var app = builder.Build();

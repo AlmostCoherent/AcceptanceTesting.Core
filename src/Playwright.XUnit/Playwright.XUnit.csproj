@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DefaultNamespace>NorthStandard.Testing.Playwright.XUnit</DefaultNamespace>
+
+    <!-- NuGet metadata -->
+    <PackageId>NorthStandard.Testing.Playwright.XUnit</PackageId>
+    <Description>xUnit integration for NorthStandard.Testing.Playwright. Provides fixtures and lifecycle management for Playwright tests using xUnit.</Description>
+    <PackageTags>testing;playwright;xunit;tdd;</PackageTags>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Playwright\Playwright.csproj" />
+  </ItemGroup>
+
+</Project>

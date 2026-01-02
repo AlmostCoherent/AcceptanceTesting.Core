@@ -20,7 +20,7 @@ namespace NorthStandard.Testing.Hosting.Tests.Configuration
                 })
                 .Build();
 
-            var loader = new ProfileLoader<TestingProfile>(configuration);
+            var loader =  new ProfileLoader<TestingProfile>(configuration);
 
             // Act
             var result = loader.LoadProfile("TestProfile");

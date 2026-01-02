@@ -3,11 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NorthStandard.Testing.Playwright.Application.Services;
-using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
+using NorthStandard.Testing.Playwright.Reqnroll.Extensions;
 using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions;
+using Reqnroll;
 using System.Net;
 using System.Net.Sockets;
-using TechTalk.SpecFlow;
 namespace AcceptanceTesting.Api.Acceptance
 {
     [Binding]
@@ -36,6 +36,7 @@ namespace AcceptanceTesting.Api.Acceptance
                 .AddLogging()
                 .AddSingleton(config)
                 .AddSingleton(new UrlBuilder($"https://localhost:{port}/")) // ✅ Inject URL with dynamic port
+                .AddPlaywrightForReqnroll(config)
                 .AddCoreScreenPlayFramework()
                 .AddScreenPlayFrameworkFromAssembly(typeof(Bootstrap).Assembly);
         }

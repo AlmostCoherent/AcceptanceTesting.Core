@@ -11,7 +11,6 @@
     /// <summary>
     /// Legacy class - consider using TestingProfileOptions directly with configuration binding
     /// </summary>
-    [System.Obsolete("Use TestingProfileOptions with ConfigurationExtensions.BindConfiguration instead")]
     public class TestingProfile : TestingProfileOptions
     {
     }
