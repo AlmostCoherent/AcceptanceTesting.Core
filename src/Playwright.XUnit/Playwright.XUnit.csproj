@@ -4,6 +4,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <DefaultNamespace>NorthStandard.Testing.Playwright.XUnit</DefaultNamespace>
+    <IsTestProject>false</IsTestProject>
 
     <!-- NuGet metadata -->
     <PackageId>NorthStandard.Testing.Playwright.XUnit</PackageId>
