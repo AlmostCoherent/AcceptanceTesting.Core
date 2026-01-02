@@ -28,6 +28,7 @@ namespace NorthStandard.Testing.Demos.Web.Acceptance
 
 			var config = new ConfigurationBuilder()
 				.AddJsonFile("appsettings.json")
+				.AddEnvironmentVariables()
 				.Build();
 
 			var loggerFactory = LoggerFactory.Create(c => c.AddConfiguration(config));

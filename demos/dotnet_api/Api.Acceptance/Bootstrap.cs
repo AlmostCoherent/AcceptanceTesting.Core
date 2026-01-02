@@ -23,6 +23,7 @@ namespace AcceptanceTesting.Api.Acceptance
 
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
                 .Build();
 
 

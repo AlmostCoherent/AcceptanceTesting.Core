@@ -35,6 +35,7 @@ public class WebServerFixture : IAsyncLifetime
 
 		var config = new ConfigurationBuilder()
 			.AddJsonFile("appsettings.json")
+			.AddEnvironmentVariables()
 			.Build();
 
 		// Build services
