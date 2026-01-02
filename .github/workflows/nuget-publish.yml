@@ -58,6 +58,11 @@ jobs:
 
     - name: Install Playwright browsers
       run: pwsh src/Playwright.Tests/bin/${{ env.CONFIGURATION }}/net8.0/playwright.ps1 install --with-deps
+    
+    - name: Configure test environment
+      run: |
+        echo "ASPNETCORE_ENVIRONMENT=Production" >> $GITHUB_ENV
+        echo "Playwright__EnableHeadlessBrowser=true" >> $GITHUB_ENV
 
     - name: Check build outputs
       run: |
