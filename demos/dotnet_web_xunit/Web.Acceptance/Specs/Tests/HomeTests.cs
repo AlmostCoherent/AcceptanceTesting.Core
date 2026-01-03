@@ -26,7 +26,7 @@ public class HomeTests
 	public async Task User_Can_View_Home_Page()
 	{
 		await Scenario.Create("User views the home page")
-			.Given("I navigate to the home page", async ctx =>
+			.When("I navigate to the home page", async ctx =>
 			{
 				await _homePageActor.NavigateToHomePage();
 			})
