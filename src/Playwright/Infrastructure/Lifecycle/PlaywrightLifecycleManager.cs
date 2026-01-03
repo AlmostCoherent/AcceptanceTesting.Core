@@ -23,21 +23,19 @@ public class PlaywrightLifecycleManager : ITestLifecycleManager
 
     public async Task BeforeTestRunAsync(CancellationToken cancellationToken = default)
     {
-        await _browserProvider.OpenBrowserAsync();
+        await _pageProvider.OpenPageInNewBrowserAsync();
     }
 
     public async Task AfterTestRunAsync(CancellationToken cancellationToken = default)
     {
-        await _browserProvider.CloseBrowserAsync();
+        await _pageProvider.ClosePageAsync();
     }
 
     public async Task BeforeScenarioAsync(CancellationToken cancellationToken = default)
     {
-        await _pageProvider.OpenPageInNewBrowserAsync();
     }
 
     public async Task AfterScenarioAsync(CancellationToken cancellationToken = default)
     {
-        await _pageProvider.ClosePageAsync();
     }
 }

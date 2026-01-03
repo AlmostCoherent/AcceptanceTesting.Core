@@ -16,9 +16,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
-    <PackageReference Include="NorthStandard.Testing.Hosting" Version="1.0.4" />
+    <!--<PackageReference Include="NorthStandard.Testing.Hosting" Version="1.0.4" />
     <PackageReference Include="NorthStandard.Testing.Playwright.XUnit" Version="1.0.4" />
-    <PackageReference Include="NorthStandard.Testing.ScreenPlayFramework" Version="1.0.4" />
+    <PackageReference Include="NorthStandard.Testing.ScreenPlayFramework" Version="1.0.4" />-->
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
       <PrivateAssets>all</PrivateAssets>
@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Hosting\Hosting.csproj" />
+    <ProjectReference Include="..\..\..\src\Playwright.XUnit\Playwright.XUnit.csproj" />
+    <ProjectReference Include="..\..\..\src\ScreenPlayFramework\ScreenPlayFramework.csproj" />
     <ProjectReference Include="..\Web\Web.csproj" />
   </ItemGroup>
 
