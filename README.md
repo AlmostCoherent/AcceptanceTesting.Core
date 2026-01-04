@@ -23,13 +23,15 @@ The framework is built around three core concepts:
 
 ## 📦 Packages
 
-This repository provides four NuGet packages:
+This repository provides multiple NuGet packages:
 
 | Package | Description | Use Case |
 |---------|-------------|----------|
 | `AlmostCoherent.AcceptanceTesting.Core` | Core abstractions and patterns | Base framework for any testing project |
 | `NorthStandard.Testing.ScreenPlayFramework` | ScreenPlay pattern implementation | Structured test automation |
 | `NorthStandard.Testing.Playwright` | Playwright utilities and extensions | Web UI testing |
+| `NorthStandard.Testing.Playwright.Reqnroll` | Reqnroll integration for Playwright | BDD with Gherkin syntax |
+| `NorthStandard.Testing.Playwright.XUnit` | xUnit integration with BDD support | xUnit test framework with fluent scenarios |
 | `NorthStandard.Testing.Hosting` | Application hosting helpers | Test environment management |
 
 ## 🚀 Quick Start
@@ -45,6 +47,12 @@ dotnet add package NorthStandard.Testing.ScreenPlayFramework
 
 # For web testing with Playwright
 dotnet add package NorthStandard.Testing.Playwright
+
+# For BDD with Reqnroll
+dotnet add package NorthStandard.Testing.Playwright.Reqnroll
+
+# For xUnit with fluent BDD scenarios
+dotnet add package NorthStandard.Testing.Playwright.XUnit
 
 # For application hosting in tests
 dotnet add package NorthStandard.Testing.Hosting
@@ -64,6 +72,8 @@ dotnet add package AlmostCoherent.AcceptanceTesting.Core --source github
 > **Security Note**: For production environments, use [Azure Artifacts Credential Provider](https://github.com/microsoft/artifacts-credprovider) for secure credential management.
 
 ### Basic Example
+
+#### ScreenPlay Pattern
 
 ```csharp
 // Actor - performs individual actions
@@ -100,6 +110,52 @@ public class DashboardValidator : IValidator
         welcomeText.Should().Contain($"Welcome, {expectedUser}");
     }
 }
+```
+
+#### xUnit Fluent BDD Scenarios
+
+```csharp
+[Fact]
+public async Task UserCanLoginSuccessfully()
+{
+    await Scenario.Create("User login flow", _output)
+        .Given("a user with valid credentials", ctx =>
+        {
+            ctx["username"] = "testuser";
+            ctx["password"] = "password123";
+        })
+        .When("the user logs in", async ctx =>
+        {
+            await _loginPage.EnterCredentials(
+                ctx["username"] as string,
+                ctx["password"] as string);
+            await _loginPage.ClickLogin();
+        })
+        .Then("the user should see the dashboard", async ctx =>
+        {
+            await Expect(_page.Locator(".dashboard"))
+                .ToBeVisibleAsync();
+        })
+        .RunAsync();
+}
+```
+
+**Output:**
+```
+Scenario: User login flow
+--------------------------------------------------
+
+Given a user with valid credentials
+  ✓ Completed in 0ms
+
+ When the user logs in
+  ✓ Completed in 245ms
+
+ Then the user should see the dashboard
+  ✓ Completed in 89ms
+
+--------------------------------------------------
+Scenario completed successfully with 3 step(s)
 ```
 
 ## 🎭 ScreenPlay Framework Deep Dive
@@ -224,16 +280,56 @@ public async Task ThenIShouldSeeTheDashboard()
 }
 ```
 
+#### xUnit BDD Scenarios
+
+The framework provides a fluent BDD API for xUnit tests:
+
+**Features:**
+- ✅ Natural Given/When/Then/And syntax
+- ✅ Step execution tracking with timing
+- ✅ Automatic step validation and ordering
+- ✅ Context sharing across steps
+- ✅ Detailed output logging
+- ✅ Rich error messages with step details
+
+```csharp
+[Fact]
+public async Task CompleteCheckoutProcess()
+{
+    await Scenario.Create("Complete order checkout", _output)
+        .Given("a user is logged in", ctx => 
+            ctx["userId"] = "user123")
+        .And("has items in cart", async ctx =>
+            await _cart.AddItem("product-1"))
+        .When("user proceeds to checkout", async ctx =>
+            await _checkout.NavigateToCheckout())
+        .And("enters payment details", async ctx =>
+            await _checkout.EnterPayment("4111111111111111"))
+        .And("confirms the order", async ctx =>
+            await _checkout.ConfirmOrder())
+        .Then("order should be placed successfully", async ctx =>
+            await Expect(_page.Locator(".order-confirmation"))
+                .ToBeVisibleAsync())
+        .And("confirmation email should be sent", async ctx =>
+        {
+            var emails = await _emailService.GetEmails(ctx["userId"]);
+            emails.Should().ContainSingle(e => e.Subject.Contains("Order"));
+        })
+        .RunAsync();
+}
+```
+
 ## 📚 Demos
 
 This repository includes comprehensive demo applications showcasing different testing approaches:
 
-### 🌐 Web Application Demo (`demos/dotnet_web/`)
+### 🌐 Web Application Demo with Reqnroll (`demos/dotnet_web/`)
 
 **What it demonstrates**:
-- Complete web application with MVC architecture
+- Complete web application with Blazor Server
 - Playwright-based UI testing
 - ScreenPlay pattern implementation for web testing
+- Reqnroll/BDD with Gherkin syntax
 - Integration with authentication flows
 
 **Running the demo**:
@@ -242,8 +338,28 @@ cd demos/dotnet_web/Web
 dotnet run
 # Navigate to https://localhost:7001
 
-# Run acceptance tests
+# Run acceptance tests with Reqnroll
 cd ../Web.Acceptance  
+dotnet test
+```
+
+### 🎯 Web Application Demo with xUnit (`demos/dotnet_web_xunit/`)
+
+**What it demonstrates**:
+- Blazor Server web application
+- xUnit test framework integration
+- Fluent BDD scenarios with Given/When/Then
+- ScreenPlay pattern with xUnit
+- Test output logging and step timing
+
+**Running the demo**:
+```bash
+cd demos/dotnet_web_xunit/Web
+dotnet run
+# Navigate to http://localhost:5000
+
+# Run xUnit BDD tests
+cd ../Web.Acceptance
 dotnet test
 ```
 
@@ -270,9 +386,15 @@ dotnet test
 
 Both demos include comprehensive test suites demonstrating:
 
-| Scenario Type | Web Demo | API Demo |
-|---------------|----------|----------|
-| **TODO: update** | update | update |
+| Feature | Reqnroll Demo | xUnit Demo | API Demo |
+|---------|---------------|------------|----------|
+| **ScreenPlay Pattern** | ✅ Full implementation | ✅ Full implementation | ✅ Full implementation |
+| **Test Framework** | Reqnroll/Gherkin | xUnit Fluent BDD | MSTest |
+| **Step Validation** | Via Gherkin syntax | Built-in ordering | N/A |
+| **Output Logging** | Reqnroll reports | Detailed step timing | Standard output |
+| **Context Sharing** | ScenarioContext | Dictionary-based | DI container |
+| **Error Messages** | Step descriptions | Rich step context | Standard |
+| **Host Management** | WebTestingHostManager | WebTestingHostManager | N/A |
 
 ## 🏗️ Building from Source
 
@@ -308,17 +430,20 @@ dotnet pack --configuration Release --output ./nupkgs
 
 ```
 AcceptanceTesting.Core/
-├── src/                          # Source packages
-│   ├── AcceptanceTesting.Core/       # Core abstractions
-│   ├── ScreenPlayFramework/          # ScreenPlay implementation  
-│   ├── Playwright/                   # Playwright utilities
-│   ├── Hosting/                      # Test hosting helpers
-│   └── *.Tests/                      # Unit tests
-├── demos/                        # Example applications
-│   ├── dotnet_web/                   # Web application demo
-│   └── dotnet_api/                   # API application demo  
-├── docs/                         # Documentation
-└── .github/workflows/            # CI/CD pipeline
+├── src/                              # Source packages
+│   ├── AcceptanceTesting.Core/           # Core abstractions
+│   ├── ScreenPlayFramework/              # ScreenPlay implementation  
+│   ├── Playwright/                       # Playwright utilities
+│   ├── Playwright.Reqnroll/              # Reqnroll/BDD integration
+│   ├── Playwright.XUnit/                 # xUnit with fluent BDD
+│   ├── Hosting/                          # Test hosting helpers
+│   └── *.Tests/                          # Unit tests
+├── demos/                            # Example applications
+│   ├── dotnet_web/                       # Web demo with Reqnroll
+│   ├── dotnet_web_xunit/                 # Web demo with xUnit BDD
+│   └── dotnet_api/                       # API application demo  
+├── docs/                             # Documentation
+└── .github/workflows/                # CI/CD pipeline
 ```
 
 ## 🔄 CI/CD & Versioning
