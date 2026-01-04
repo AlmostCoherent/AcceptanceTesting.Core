@@ -9,6 +9,7 @@ namespace NorthStandard.Testing.Hosting.Infrastructure.Configuration
         public bool UseLocalAppInstance { get; set; } = true;
         /// <summary>
         /// If UseLocalAppInstance is false, this is the base URL of the application to test against.
+        /// Otherwise, this value is overridden when the local instance is started.
         /// </summary>
         public string BaseUrl { get; set; } = "https://localhost:5001";
     }
