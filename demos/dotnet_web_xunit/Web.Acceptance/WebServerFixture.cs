@@ -1,14 +1,14 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NorthStandard.Testing.Hosting.Domain.Abstractions;
+using NorthStandard.Testing.Hosting.Infrastructure;
+using NorthStandard.Testing.Hosting.Infrastructure.Configuration;
 using NorthStandard.Testing.Playwright.Application.Services;
 using NorthStandard.Testing.Playwright.Domain.Abstractions;
 using NorthStandard.Testing.Playwright.Extensions;
 using NorthStandard.Testing.Playwright.XUnit.Fixtures;
 using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions;
-using System.Net;
-using System.Net.Sockets;
 using Xunit;
 
 namespace NorthStandard.Testing.Demos.Web.Acceptance;
@@ -18,94 +18,102 @@ namespace NorthStandard.Testing.Demos.Web.Acceptance;
 /// </summary>
 public class WebServerFixture : IAsyncLifetime
 {
-	private WebApplication? _server;
-	private int _port;
-	private TcpListener? _portReservation;
+    private IWebTestingHostManager? _hostManager;
 
-	public PlaywrightFixture PlaywrightFixture { get; private set; } = null!;
-	public UrlBuilder UrlBuilder { get; private set; } = null!;
-	public IServiceProvider Services { get; private set; } = null!;
+    public PlaywrightFixture PlaywrightFixture { get; private set; } = null!;
+    public UrlBuilder UrlBuilder { get; private set; } = null!;
+    public IServiceProvider Services { get; private set; } = null!;
+    public WebTestingProfile Profile { get; private set; } = null!;
 
-	public async Task InitializeAsync()
-	{
-		// Reserve port
-		_portReservation = new TcpListener(IPAddress.Loopback, 0);
-		_portReservation.Start();
-		_port = ((IPEndPoint)_portReservation.LocalEndpoint).Port;
+    public async Task InitializeAsync()
+    {
+        var config = BuildConfiguration();
+        Profile = new WebTestingProfile(config);
+        
+        _hostManager = new WebTestingHostManager(
+            Profile.Options,
+            args => global::Web.Program.CreateWebHostBuilder(args, isTestHost: true));
+        
+        _hostManager.Initialize();
+        
+        UrlBuilder = new UrlBuilder(_hostManager.BaseUrl);
+        Services = BuildServiceProvider(config);
+        
+        PlaywrightFixture = await CreatePlaywrightFixture();
+        
+        await _hostManager.StartAsync();
+    }
 
-		var config = new ConfigurationBuilder()
-			.AddJsonFile("appsettings.json")
-			.AddEnvironmentVariables()
-			.Build();
+    public async Task DisposeAsync()
+    {
+        await DisposePlaywrightFixture();
+        
+        if (_hostManager != null)
+        {
+            await _hostManager.StopAsync();
+        }
+        
+        DisposeServices();
+    }
 
-		// Build services
-		var services = new ServiceCollection();
-		services.AddLogging(c => c.AddConfiguration(config));
-		services.AddSingleton<IConfiguration>(config);
-		
-		UrlBuilder = new UrlBuilder($"http://localhost:{_port}/");
-		services.AddSingleton(UrlBuilder);
-		
-		// Add Playwright for xUnit
-		services.AddPlaywrightServices(config);
-		
-		// Add ScreenPlay framework
-		services.AddCoreScreenPlayFramework();
-		services.AddScreenPlayFrameworkFromAssembly(typeof(WebServerFixture).Assembly);
+    private static IConfiguration BuildConfiguration()
+    {
+        return new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: true)
+            .AddEnvironmentVariables()
+            .Build();
+    }
 
-		Services = services.BuildServiceProvider();
+    private IServiceProvider BuildServiceProvider(IConfiguration config)
+    {
+        var services = new ServiceCollection();
+        
+        services.AddLogging(c => c.AddConfiguration(config));
+        services.AddSingleton(config);
+        services.AddSingleton(UrlBuilder);
+        
+        services.AddPlaywrightServices(config);
+        services.AddCoreScreenPlayFramework();
+        services.AddScreenPlayFrameworkFromAssembly(typeof(WebServerFixture).Assembly);
+        
+        Profile.ConfigureServices(services, config);
 
-		// Create Playwright fixture manually with DI dependencies
-		var lifecycleManager = Services.GetRequiredService<ITestLifecycleManager>();
-		var pageProvider = Services.GetRequiredService<IPlaywrightPageProvider>();
-		PlaywrightFixture = new PlaywrightFixture(lifecycleManager, pageProvider);
-		await PlaywrightFixture.InitializeAsync();
+        return services.BuildServiceProvider();
+    }
 
-		// Start web server
-		Console.WriteLine($"Starting Web server on {UrlBuilder.GetBaseUrl()}...");
-		
-		_portReservation?.Stop();
-		_portReservation?.Dispose();
-		_portReservation = null;
+    private async Task<PlaywrightFixture> CreatePlaywrightFixture()
+    {
+        var lifecycleManager = Services.GetRequiredService<ITestLifecycleManager>();
+        var pageProvider = Services.GetRequiredService<IPlaywrightPageProvider>();
+        
+        var fixture = new PlaywrightFixture(lifecycleManager, pageProvider);
+        await fixture.InitializeAsync();
+        
+        return fixture;
+    }
 
-		string[] args = new[] { $"--urls={UrlBuilder.GetBaseUrl()}" };
-		_server = global::Web.Program.CreateWebHostBuilder(args, isTestHost: true);
-		await _server.StartAsync();
+    private async Task DisposePlaywrightFixture()
+    {
+        try
+        {
+            if (PlaywrightFixture != null)
+            {
+                await PlaywrightFixture.DisposeAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error disposing Playwright fixture: {ex.Message}");
+        }
+    }
 
-		Console.WriteLine($"Web server running at {UrlBuilder.GetBaseUrl()}");
-	}
-
-	public async Task DisposeAsync()
-	{
-		try
-		{
-			await PlaywrightFixture.DisposeAsync();
-
-			if (_server != null)
-			{
-				Console.WriteLine("Stopping Web server...");
-				await _server.StopAsync();
-				await _server.DisposeAsync();
-				_server = null;
-				Console.WriteLine("Web server stopped.");
-			}
-		}
-		catch (Exception ex)
-		{
-			Console.WriteLine($"Error during cleanup: {ex.Message}");
-		}
-		finally
-		{
-			_portReservation?.Stop();
-			_portReservation?.Dispose();
-			_portReservation = null;
-
-			if (Services is IDisposable disposable)
-			{
-				disposable.Dispose();
-			}
-		}
-	}
+    private void DisposeServices()
+    {
+        if (Services is IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
+    }
 }
 
 [CollectionDefinition("WebServer")]
