@@ -495,7 +495,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - **Playwright**: Microsoft's excellent browser automation library
 - **Reqnroll**: Modern BDD framework for .NET
 - **GitVersion**: Semantic versioning from Git history
-
 ---
 
 **Ready to transform your testing approach?** 🚀
