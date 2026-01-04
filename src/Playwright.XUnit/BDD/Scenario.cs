@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Xunit.Abstractions;
 
 namespace NorthStandard.Testing.Playwright.XUnit.BDD;
 
@@ -17,19 +19,34 @@ public class Scenario
         Then
     }
 
+    private class StepInfo
+    {
+        public StepType Type { get; set; }
+        public string Description { get; set; } = string.Empty;
+        public Func<Dictionary<string, object>, Task> Action { get; set; } = null!;
+    }
+
     private readonly Dictionary<string, object> _context = new();
-    private readonly List<Func<Dictionary<string, object>, Task>> _steps = new();
+    private readonly List<StepInfo> _steps = new();
+    private readonly ITestOutputHelper? _output;
+    private readonly string _scenarioDescription;
     private StepType _lastStepType = StepType.None;
     private StepType _currentPhase = StepType.None;
 
-    private Scenario() { }
+    private Scenario(string description, ITestOutputHelper? output)
+    {
+        _scenarioDescription = description;
+        _output = output;
+    }
 
     /// <summary>
     /// Creates a new BDD scenario with the specified description
     /// </summary>
     /// <param name="description">A description of the scenario being tested</param>
+    /// <param name="output">Optional test output helper for logging (xUnit)</param>
     /// <returns>A new Scenario instance</returns>
-    public static Scenario Create(string description) => new();
+    public static Scenario Create(string description, ITestOutputHelper? output = null) 
+        => new(description, output);
 
     private void ValidateStepOrder(StepType newStepType)
     {
@@ -73,7 +90,12 @@ public class Scenario
     public Scenario Given(string description, Func<Dictionary<string, object>, Task> action)
     {
         ValidateStepOrder(StepType.Given);
-        _steps.Add(action);
+        _steps.Add(new StepInfo
+        {
+            Type = StepType.Given,
+            Description = description,
+            Action = action
+        });
         _lastStepType = StepType.Given;
         return this;
     }
@@ -87,7 +109,12 @@ public class Scenario
     public Scenario Given(string description, Action<Dictionary<string, object>> action)
     {
         ValidateStepOrder(StepType.Given);
-        _steps.Add(ctx => { action(ctx); return Task.CompletedTask; });
+        _steps.Add(new StepInfo
+        {
+            Type = StepType.Given,
+            Description = description,
+            Action = ctx => { action(ctx); return Task.CompletedTask; }
+        });
         _lastStepType = StepType.Given;
         return this;
     }
@@ -101,7 +128,12 @@ public class Scenario
     public Scenario When(string description, Func<Dictionary<string, object>, Task> action)
     {
         ValidateStepOrder(StepType.When);
-        _steps.Add(action);
+        _steps.Add(new StepInfo
+        {
+            Type = StepType.When,
+            Description = description,
+            Action = action
+        });
         _lastStepType = StepType.When;
         return this;
     }
@@ -115,7 +147,12 @@ public class Scenario
     public Scenario When(string description, Action<Dictionary<string, object>> action)
     {
         ValidateStepOrder(StepType.When);
-        _steps.Add(ctx => { action(ctx); return Task.CompletedTask; });
+        _steps.Add(new StepInfo
+        {
+            Type = StepType.When,
+            Description = description,
+            Action = ctx => { action(ctx); return Task.CompletedTask; }
+        });
         _lastStepType = StepType.When;
         return this;
     }
@@ -129,7 +166,12 @@ public class Scenario
     public Scenario Then(string description, Func<Dictionary<string, object>, Task> action)
     {
         ValidateStepOrder(StepType.Then);
-        _steps.Add(action);
+        _steps.Add(new StepInfo
+        {
+            Type = StepType.Then,
+            Description = description,
+            Action = action
+        });
         _lastStepType = StepType.Then;
         return this;
     }
@@ -143,7 +185,12 @@ public class Scenario
     public Scenario Then(string description, Action<Dictionary<string, object>> action)
     {
         ValidateStepOrder(StepType.Then);
-        _steps.Add(ctx => { action(ctx); return Task.CompletedTask; });
+        _steps.Add(new StepInfo
+        {
+            Type = StepType.Then,
+            Description = description,
+            Action = ctx => { action(ctx); return Task.CompletedTask; }
+        });
         _lastStepType = StepType.Then;
         return this;
     }
@@ -161,7 +208,12 @@ public class Scenario
         {
             throw new InvalidOperationException("And must follow a Given, When, or Then step");
         }
-        _steps.Add(action);
+        _steps.Add(new StepInfo
+        {
+            Type = _lastStepType,
+            Description = description,
+            Action = action
+        });
         // Keep the same _lastStepType so subsequent And calls continue the same type
         return this;
     }
@@ -179,7 +231,12 @@ public class Scenario
         {
             throw new InvalidOperationException("And must follow a Given, When, or Then step");
         }
-        _steps.Add(ctx => { action(ctx); return Task.CompletedTask; });
+        _steps.Add(new StepInfo
+        {
+            Type = _lastStepType,
+            Description = description,
+            Action = ctx => { action(ctx); return Task.CompletedTask; }
+        });
         // Keep the same _lastStepType so subsequent And calls continue the same type
         return this;
     }
@@ -190,13 +247,63 @@ public class Scenario
     /// <returns>A task representing the asynchronous operation</returns>
     public async Task RunAsync()
     {
-        foreach (var step in _steps)
+        try
         {
-            await step(_context);
+            _output?.WriteLine($"\nScenario: {_scenarioDescription}");
+            _output?.WriteLine(new string('-', 50));
+
+            for (int i = 0; i < _steps.Count; i++)
+            {
+                var step = _steps[i];
+                var stepPrefix = GetStepPrefix(step.Type, i);
+                var stepDescription = $"{stepPrefix} {step.Description}";
+
+                try
+                {
+                    _output?.WriteLine($"\n{stepDescription}");
+                    
+                    var sw = Stopwatch.StartNew();
+                    await step.Action(_context);
+                    sw.Stop();
+                    
+                    _output?.WriteLine($"  Completed in {sw.ElapsedMilliseconds}ms");
+                }
+                catch (Exception ex)
+                {
+                    _output?.WriteLine($"  Failed");
+                    throw new InvalidOperationException(
+                        $"Scenario '{_scenarioDescription}' failed at step: {stepDescription}", 
+                        ex);
+                }
+            }
+
+            _output?.WriteLine($"\n{new string('-', 50)}");
+            _output?.WriteLine($"Scenario completed successfully with {_steps.Count} step(s)\n");
         }
-        _context.Clear();
-        _steps.Clear();
-        _lastStepType = StepType.None;
-        _currentPhase = StepType.None;
+        finally
+        {
+            // Always cleanup, even if steps fail
+            _context.Clear();
+            _steps.Clear();
+            _lastStepType = StepType.None;
+            _currentPhase = StepType.None;
+        }
+    }
+
+    private string GetStepPrefix(StepType stepType, int stepIndex)
+    {
+        // Use "And" for subsequent steps of the same type
+        if (stepIndex > 0 && _steps[stepIndex - 1].Type == stepType)
+        {
+            return "  And";
+        }
+
+        return stepType switch
+        {
+            StepType.Given => "Given",
+            StepType.When => " When",
+            StepType.Then => " Then",
+            _ => string.Empty
+        };
     }
 }
