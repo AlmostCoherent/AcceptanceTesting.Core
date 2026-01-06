@@ -292,6 +292,8 @@ The framework provides a fluent BDD API for xUnit tests:
 - ✅ Detailed output logging
 - ✅ Rich error messages with step details
 
+Some additional details for this can be found here: https://martinfowler.com/bliki/FluentInterface.html
+
 ```csharp
 [Fact]
 public async Task CompleteCheckoutProcess()
