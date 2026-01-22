@@ -8,7 +8,7 @@ using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions;
 using Reqnroll;
 using System.Net;
 using System.Net.Sockets;
-namespace AcceptanceTesting.Api.Acceptance
+namespace NorthStandard.Testing.Demos.Api.Acceptance
 {
     [Binding]
     public class Bootstrap

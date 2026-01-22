@@ -1,26 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <DefaultNamespace>NorthStandard.Testing.Playwright.XUnit.Tests</DefaultNamespace>
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>NorthStandard.Testing.Playwright.XUnit.Tests</RootNamespace>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+		<RunSettingsFilePath>C:\repos\AcceptanceTesting.Core\src\Playwright.XUnit.Tests\bin\Debug\net8.0\fine-code-coverage\coverage-tool-output\Playwright.XUnit.Tests-fcc-mscodecoverage-generated.runsettings</RunSettingsFilePath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
-    <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="8.8.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+		<PackageReference Include="xunit" Version="2.9.3" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="FluentAssertions" Version="8.8.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Playwright.XUnit\Playwright.XUnit.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Playwright.XUnit\Playwright.XUnit.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -1,28 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <DefaultNamespace>NorthStandard.Testing.ScreenPlayFramework</DefaultNamespace>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>NorthStandard.Testing.ScreenPlayFramework</RootNamespace>
 
-    <!-- NuGet metadata -->
-    <PackageId>NorthStandard.Testing.ScreenPlayFramework</PackageId>
-    <Description>This project contains a testing framework for .NET applications. This is based on the more traditional ScreenPlay methodology of testing.</Description>
-    <PackageTags>testing;screenplay;</PackageTags>
-    <IsPackable>true</IsPackable>
-  </PropertyGroup>
+		<!-- NuGet metadata -->
+		<PackageId>NorthStandard.Testing.ScreenPlayFramework</PackageId>
+		<Description>This project contains a testing framework for .NET applications. This is based on the more traditional ScreenPlay methodology of testing.</Description>
+		<PackageTags>testing;screenplay;</PackageTags>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
-    <PackageReference Include="Microsoft.Playwright.MSTest" Version="1.57.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Playwright.MSTest" Version="1.57.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+		<PackageReference Include="System.Net.Http" Version="4.3.4" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Playwright\Playwright.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Playwright\Playwright.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AcceptanceTesting.Api.WeatherForecasts
+namespace NorthStandard.Testing.Demos.Api.WeatherForecasts
 {
     [ApiController]
     [Route("api/weather-forecasts")]

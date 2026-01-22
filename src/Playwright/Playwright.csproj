@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <DefaultNamespace>NorthStandard.Testing.Playwright</DefaultNamespace>
+    <RootNamespace>NorthStandard.Testing.Playwright</RootNamespace>
 
     <!-- NuGet metadata -->
     <PackageId>NorthStandard.Testing.Playwright</PackageId>

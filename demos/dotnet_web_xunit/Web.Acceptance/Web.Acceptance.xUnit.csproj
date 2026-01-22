@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <IsTestProject>true</IsTestProject>
     <RootNamespace>NorthStandard.Testing.Demos.Web.Acceptance</RootNamespace>
+    <RunSettingsFilePath>C:\repos\AcceptanceTesting.Core\demos\dotnet_web_xunit\Web.Acceptance\bin\Debug\net8.0\fine-code-coverage\coverage-tool-output\Web.Acceptance.xUnit-fcc-mscodecoverage-generated.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
   <ItemGroup>

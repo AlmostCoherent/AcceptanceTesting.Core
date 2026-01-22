@@ -2,7 +2,7 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace AcceptanceTesting.Api.Converters
+namespace NorthStandard.Testing.Demos.Api.Converters
 {
     public class DateOnlyJsonConverter : JsonConverter<DateOnly>
     {

@@ -117,7 +117,7 @@ namespace NorthStandard.Testing.Demos.Web.Acceptance.Specs.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Specs/Features/Home.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Specs/Features/Home.feature.ndjson", 4);
         }
         
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(DisplayName="Confirm home page of web app")]
@@ -145,6 +145,37 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
  await testRunner.WhenAsync("I navigate to the home page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 7
+ await testRunner.ThenAsync("I should see the home page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(DisplayName="Confirm home page of web app again")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Confirm home page of web app again")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Weather forecast api tests")]
+        public async global::System.Threading.Tasks.Task ConfirmHomePageOfWebAppAgain()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "1";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Confirm home page of web app again", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 9
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 10
+ await testRunner.WhenAsync("I navigate to the home page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 11
  await testRunner.ThenAsync("I should see the home page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }

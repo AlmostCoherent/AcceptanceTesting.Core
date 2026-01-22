@@ -1,8 +1,8 @@
 using System;
-using AcceptanceTesting.Api.Acceptance.Engine.WeatherForecast.Actors;
+using NorthStandard.Testing.Demos.Api.Acceptance.Engine.WeatherForecast.Actors;
 using Reqnroll;
 
-namespace AcceptanceTesting.Api.Acceptance.Specs.Steps
+namespace NorthStandard.Testing.Demos.Api.Acceptance.Specs.Steps
 {
     [Binding]
     public class WeatherForecastStepDefinitions

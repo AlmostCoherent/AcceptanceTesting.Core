@@ -1,4 +1,4 @@
-namespace AcceptanceTesting.Api
+namespace NorthStandard.Testing.Demos.Api
 {
     public class WeatherForecast
     {

@@ -1,7 +1,7 @@
-using AcceptanceTesting.Api.Converters;
+using NorthStandard.Testing.Demos.Api.Converters;
 using Microsoft.OpenApi;
 
-namespace AcceptanceTesting.Api
+namespace NorthStandard.Testing.Demos.Api
 {
     public class Program
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Reqnroll.Microsoft.Extensions.DependencyInjection;
 
-namespace AcceptanceTesting.Api.Acceptance
+namespace NorthStandard.Testing.Demos.Api.Acceptance
 {
     public static class ServicesCollectionProvider
     {

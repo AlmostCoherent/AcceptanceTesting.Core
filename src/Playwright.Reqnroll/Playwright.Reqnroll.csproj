@@ -1,26 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <DefaultNamespace>NorthStandard.Testing.Playwright.Reqnroll</DefaultNamespace>
-    <IsTestProject>false</IsTestProject>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>NorthStandard.Testing.Playwright.Reqnroll</RootNamespace>
+		<IsTestProject>false</IsTestProject>
 
-    <!-- NuGet metadata -->
-    <PackageId>NorthStandard.Testing.Playwright.Reqnroll</PackageId>
-    <Description>Reqnroll integration for NorthStandard.Testing.Playwright. Provides hooks and lifecycle management for Playwright tests using Reqnroll.</Description>
-    <PackageTags>testing;playwright;reqnroll;bdd;</PackageTags>
-    <IsPackable>true</IsPackable>
-  </PropertyGroup>
+		<!-- NuGet metadata -->
+		<PackageId>NorthStandard.Testing.Playwright.Reqnroll</PackageId>
+		<Description>Reqnroll integration for NorthStandard.Testing.Playwright. Provides hooks and lifecycle management for Playwright tests using Reqnroll.</Description>
+		<PackageTags>testing;playwright;reqnroll;bdd;</PackageTags>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Reqnroll" Version="3.3.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Reqnroll" Version="3.3.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Playwright\Playwright.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Playwright\Playwright.csproj" />
+	</ItemGroup>
 
 </Project>

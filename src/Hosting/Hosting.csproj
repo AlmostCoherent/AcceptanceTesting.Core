@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <DefaultNamespace>NorthStandard.Testing.Hosting</DefaultNamespace>
+	  <RootNamespace>NorthStandard.Testing.Hosting</RootNamespace>
 
     <PackageId>NorthStandard.Testing.Hosting</PackageId>
     <Description>This project contains testing utilities used for hosting applications.</Description>

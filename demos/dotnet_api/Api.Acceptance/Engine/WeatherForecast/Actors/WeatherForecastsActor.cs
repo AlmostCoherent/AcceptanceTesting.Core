@@ -1,8 +1,8 @@
-﻿using AcceptanceTesting.Api.Acceptance.Engine.WeatherForecast.Contexts;
+﻿using NorthStandard.Testing.Demos.Api.Acceptance.Engine.WeatherForecast.Contexts;
 using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
 using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Api.Actors;
 
-namespace AcceptanceTesting.Api.Acceptance.Engine.WeatherForecast.Actors
+namespace NorthStandard.Testing.Demos.Api.Acceptance.Engine.WeatherForecast.Actors
 {
     public class WeatherForecastsActor : IActor
     {

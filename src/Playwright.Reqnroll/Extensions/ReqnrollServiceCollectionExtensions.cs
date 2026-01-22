@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NorthStandard.Testing.Playwright.Extensions;
-using NorthStandard.Testing.Playwright.Infrastructure.Configuration;
 
 namespace NorthStandard.Testing.Playwright.Reqnroll.Extensions;
 

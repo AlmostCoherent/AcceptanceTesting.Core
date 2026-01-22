@@ -1,6 +1,6 @@
 ﻿using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
 
-namespace AcceptanceTesting.Api.Acceptance.Engine.WeatherForecast.Contexts
+namespace NorthStandard.Testing.Demos.Api.Acceptance.Engine.WeatherForecast.Contexts
 {
     public class WeatherForcastContext : IContext
     {
