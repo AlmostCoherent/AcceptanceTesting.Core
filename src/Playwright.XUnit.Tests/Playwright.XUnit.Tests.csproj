@@ -7,7 +7,6 @@
 		<RootNamespace>NorthStandard.Testing.Playwright.XUnit.Tests</RootNamespace>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
-		<RunSettingsFilePath>C:\repos\AcceptanceTesting.Core\src\Playwright.XUnit.Tests\bin\Debug\net8.0\fine-code-coverage\coverage-tool-output\Playwright.XUnit.Tests-fcc-mscodecoverage-generated.runsettings</RunSettingsFilePath>
 	</PropertyGroup>
 
 	<ItemGroup>

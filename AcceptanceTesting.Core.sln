@@ -37,8 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Acceptance", "demos\dot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Reqnroll", "src\Playwright.Reqnroll\Playwright.Reqnroll.csproj", "{8663F574-ECCC-46A5-B2F2-31C5227DAF91}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.XUnit", "src\Playwright.XUnit\Playwright.XUnit.csproj", "{FE5F2A69-C7F3-4595-ABAA-6E2A5F60D50E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.XUnit.Tests", "src\Playwright.XUnit.Tests\Playwright.XUnit.Tests.csproj", "{B8C9A3D1-4E7F-4A2B-9C3D-1F2E3D4A5B6C}"

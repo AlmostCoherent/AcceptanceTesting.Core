@@ -7,7 +7,6 @@
 		<RootNamespace>NorthStandard.Testing.ScreenPlayFramework.Tests</RootNamespace>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
-		<RunSettingsFilePath>C:\repos\AcceptanceTesting.Core\src\ScreenPlayFramework.Tests\bin\Debug\net8.0\fine-code-coverage\coverage-tool-output\ScreenPlayFramework.Tests-fcc-mscodecoverage-generated.runsettings</RunSettingsFilePath>
 	</PropertyGroup>
 
 	<ItemGroup>
