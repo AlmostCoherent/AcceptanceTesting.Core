@@ -26,7 +26,6 @@ namespace NorthStandard.Testing.Demos.Api.Acceptance
                 .AddEnvironmentVariables()
                 .Build();
 
-
             var loggerFactory = LoggerFactory.Create(c => c.AddConfiguration(config));
             var log = loggerFactory.CreateLogger<Bootstrap>();
 
@@ -45,13 +44,13 @@ namespace NorthStandard.Testing.Demos.Api.Acceptance
         [BeforeTestRun(Order = 1)]
         public static async Task BeforeTestRunConfigureAndRunApp(UrlBuilder urlBuilder)
         {
-            Console.WriteLine($"Starting TestPlay server on {urlBuilder.GetBaseUrl()}...");
+            Console.WriteLine($"Starting API server on {urlBuilder.GetBaseUrl()}...");
             string[] args = new[] { $"--urls={urlBuilder.GetBaseUrl()}" };
-            // Testplay admin site
-            server = Program.CreateApiHostBuilder(args); // ✅ Use CreateHost from TestPlay
+            // Use the factory provider pattern to create the host without exposing the method directly
+            server = ApiHostFactory.CreateHost(args);
             await server.StartAsync();
 
-            Console.WriteLine($"TestPlay server running at {urlBuilder.GetBaseUrl()}/");
+            Console.WriteLine($"API server running at {urlBuilder.GetBaseUrl()}/");
         }
 
         [AfterTestRun]
@@ -59,9 +58,9 @@ namespace NorthStandard.Testing.Demos.Api.Acceptance
         {
             if (server != null)
             {
-                Console.WriteLine("Stopping TestPlay server...");
+                Console.WriteLine("Stopping API server...");
                 await server.StopAsync();
-                Console.WriteLine("TestPlay server stopped.");
+                Console.WriteLine("API server stopped.");
             }
         }
 

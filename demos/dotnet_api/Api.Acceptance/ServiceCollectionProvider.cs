@@ -8,6 +8,9 @@ namespace NorthStandard.Testing.Demos.Api.Acceptance
         private readonly static IServiceCollection services = new ServiceCollection();
 
         [ScenarioDependencies(AutoRegisterBindings = true, ScopeLevel = ScopeLevelType.Scenario)]
-        public static IServiceCollection CreateServices() => services;
+        public static IServiceCollection CreateServices()
+        {
+            return services;
+        }
     }
 }

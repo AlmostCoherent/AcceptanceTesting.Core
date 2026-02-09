@@ -26,12 +26,10 @@ public class HomeTests
 	public async Task User_Can_View_Home_Page()
 	{
 		await Scenario.Create("User views the home page")
-			.When("I navigate to the home page", async ctx =>
-			{
+			.When("I navigate to the home page", async ctx => {
 				await _homePageActor.NavigateToHomePage();
 			})
-			.Then("I should see the home page", async ctx =>
-			{
+			.Then("I should see the home page", async ctx => {
 				await _homePageValidator.ValidateHomePageTitle();
 			})
 			.RunAsync();
@@ -43,12 +41,10 @@ public class HomeTests
 	public async Task Home_Page_Displays_Welcome_Message()
 	{
 		await Scenario.Create("Home page displays welcome message")
-			.When("I navigate to the home page", async ctx =>
-			{
+			.When("I navigate to the home page", async ctx => {
 				await _homePageActor.NavigateToHomePage();
 			})
-			.Then("I should see the welcome message", async ctx =>
-			{
+			.Then("I should see the welcome message", async ctx => {
 				await _homePageValidator.ValidateHomePageTitle();
 			})
 			.RunAsync();
