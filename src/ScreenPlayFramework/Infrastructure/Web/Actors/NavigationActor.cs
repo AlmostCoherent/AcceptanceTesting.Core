@@ -4,6 +4,7 @@ using AlmostCoherent.Testing.Playwright.Application.Services;
 using Microsoft.Playwright;
 using System;
 using System.Threading.Tasks;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
 
 namespace AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Web.Actors
 {

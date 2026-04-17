@@ -9,6 +9,7 @@ using AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Extensions;
 using Reqnroll;
 using System.Net;
 using System.Net.Sockets;
+using Microsoft.Playwright;
 namespace NorthStandard.Testing.Demos.Api.Acceptance
 {
     [Binding]
@@ -22,7 +23,7 @@ namespace NorthStandard.Testing.Demos.Api.Acceptance
         {
             port = GetFreeTcpPort(); // Get a free port dynamically
 
-            var config = ConfigurationExtensions.BuildTestConfiguration();
+            var config = AlmostCoherent.Testing.Playwright.Extensions.ConfigurationExtensions.BuildTestConfiguration();
             var loggerFactory = LoggerFactory.Create(c => c.AddConfiguration(config));
             var log = loggerFactory.CreateLogger<Bootstrap>();
 

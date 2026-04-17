@@ -14,7 +14,7 @@ namespace AlmostCoherent.Testing.Playwright.Tests.Infrastructure.Configuration
 
             // Assert
             config.EnableCaptureForFailingTests.Should().BeTrue();
-            config.EnableHeadlessBrowser.Should().BeFalse(); // Default value
+            config.EnableHeadlessBrowser.Should().BeTrue(); // Default value
             config.WaitTimeOut.Should().Be(10000);
             config.EnableTracing.Should().BeFalse(); // Default value
             config.CaptureScreenshots.Should().BeFalse(); // Default value

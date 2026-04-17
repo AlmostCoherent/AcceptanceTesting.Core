@@ -72,7 +72,7 @@ public class WebServerFixture : IAsyncLifetime
         services.AddSingleton(config);
         services.AddSingleton(UrlBuilder);
         
-        services.AddPlaywrightServices(config);
+        services.AddPlaywrightServices();
         services.AddCoreScreenPlayFramework();
         services.AddScreenPlayFrameworkFromAssembly(typeof(WebServerFixture).Assembly);
         

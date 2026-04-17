@@ -21,7 +21,7 @@ namespace AlmostCoherent.Testing.Demos.Web.Acceptance
         [BeforeTestRun(Order = 0)]
         public static void BeforeTestRunSetupServices()
         {
-            var config = ConfigurationExtensions.BuildTestConfiguration();
+            var config = Playwright.Extensions.ConfigurationExtensions.BuildTestConfiguration();
             profile = new WebTestingProfile(config);
 
             hostManager = new WebTestingHostManager(

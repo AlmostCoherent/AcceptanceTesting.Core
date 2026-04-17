@@ -13,11 +13,10 @@ public static class XUnitServiceCollectionExtensions
     /// Adds Playwright services configured for xUnit
     /// </summary>
     public static IServiceCollection AddPlaywrightForXUnit(
-        this IServiceCollection services, 
-        IConfiguration configuration)
+        this IServiceCollection services)
     {
         // Register core Playwright services
-        services.AddPlaywrightServices(configuration);
+        services.AddPlaywrightServices();
         return services;
     }
 }
