@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.Playwright.Extensions;
+using AlmostCoherent.Testing.Playwright.Extensions;
 
-namespace NorthStandard.Testing.Playwright.XUnit.Extensions;
+namespace AlmostCoherent.Testing.Playwright.XUnit.Extensions;
 
 /// <summary>
 /// Extension methods for registering Playwright with xUnit

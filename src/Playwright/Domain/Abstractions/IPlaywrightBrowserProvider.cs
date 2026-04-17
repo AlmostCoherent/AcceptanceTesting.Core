@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Playwright.Domain.Abstractions
+namespace AlmostCoherent.Testing.Playwright.Domain.Abstractions
 {
     /// <summary>
     /// Abstraction for providing Playwright browsers

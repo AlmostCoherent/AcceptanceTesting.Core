@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Playwright.Domain.Entities
+namespace AlmostCoherent.Testing.Playwright.Domain.Entities
 {
   public sealed class Button(ILocator locator)
   {

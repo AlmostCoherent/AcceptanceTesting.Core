@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
-using NorthStandard.Testing.Playwright.XUnit.BDD;
+using AlmostCoherent.Testing.Playwright.XUnit.BDD;
 using Xunit;
 
-namespace NorthStandard.Testing.Playwright.XUnit.Tests.BDD;
+namespace AlmostCoherent.Testing.Playwright.XUnit.Tests.BDD;
 
 public class ScenarioTests
 {

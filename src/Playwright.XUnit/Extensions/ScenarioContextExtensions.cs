@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NorthStandard.Testing.Playwright.XUnit.Extensions;
+namespace AlmostCoherent.Testing.Playwright.XUnit.Extensions;
 
 /// <summary>
 /// Extensions for scenario context

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using NorthStandard.Testing.Hosting.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Hosting.Infrastructure.Configuration;
 
-namespace NorthStandard.Testing.Hosting.Infrastructure.Configuration
+namespace AlmostCoherent.Testing.Hosting.Infrastructure.Configuration
 {
     /// <summary>
     /// Legacy profile loader - consider using ConfigurationExtensions.BindConfiguration instead

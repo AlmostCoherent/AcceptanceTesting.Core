@@ -1,9 +1,9 @@
 using Microsoft.Playwright;
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
 using System;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Playwright.Infrastructure.Providers
+namespace AlmostCoherent.Testing.Playwright.Infrastructure.Providers
 {
     /// <summary>
     /// Provides a playwright page <see cref="IPage"/>

@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NorthStandard.Testing.Hosting.Domain.Abstractions
+namespace AlmostCoherent.Testing.Hosting.Domain.Abstractions
 {
     public interface IAppProfile {
         string Name { get; }

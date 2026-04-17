@@ -1,8 +1,8 @@
 using FluentAssertions;
-using NorthStandard.Testing.Playwright.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Playwright.Infrastructure.Configuration;
 using Xunit;
 
-namespace NorthStandard.Testing.Playwright.Tests.Infrastructure.Configuration
+namespace AlmostCoherent.Testing.Playwright.Tests.Infrastructure.Configuration
 {
     public class PlaywrightConfigurationTests
     {

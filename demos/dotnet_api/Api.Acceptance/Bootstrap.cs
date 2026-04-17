@@ -2,9 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NorthStandard.Testing.Playwright.Application.Services;
-using NorthStandard.Testing.Playwright.Reqnroll.Extensions;
-using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions;
+using AlmostCoherent.Testing.Playwright.Application.Services;
+using AlmostCoherent.Testing.Playwright.Extensions;
+using AlmostCoherent.Testing.Playwright.Reqnroll.Extensions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Extensions;
 using Reqnroll;
 using System.Net;
 using System.Net.Sockets;
@@ -21,11 +22,7 @@ namespace NorthStandard.Testing.Demos.Api.Acceptance
         {
             port = GetFreeTcpPort(); // Get a free port dynamically
 
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .Build();
-
+            var config = ConfigurationExtensions.BuildTestConfiguration();
             var loggerFactory = LoggerFactory.Create(c => c.AddConfiguration(config));
             var log = loggerFactory.CreateLogger<Bootstrap>();
 
@@ -35,8 +32,8 @@ namespace NorthStandard.Testing.Demos.Api.Acceptance
                 .CreateServices()
                 .AddLogging()
                 .AddSingleton(config)
-                .AddSingleton(new UrlBuilder($"https://localhost:{port}/")) // ✅ Inject URL with dynamic port
-                .AddPlaywrightForReqnroll(config)
+                .AddSingleton(new UrlBuilder($"https://localhost:{port}/"))
+                .AddPlaywrightForReqnroll()
                 .AddCoreScreenPlayFramework()
                 .AddScreenPlayFrameworkFromAssembly(typeof(Bootstrap).Assembly);
         }

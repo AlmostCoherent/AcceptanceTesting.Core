@@ -1,15 +1,16 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NorthStandard.Testing.Hosting.Domain.Abstractions;
-using NorthStandard.Testing.Hosting.Infrastructure;
-using NorthStandard.Testing.Hosting.Infrastructure.Configuration;
-using NorthStandard.Testing.Playwright.Application.Services;
-using NorthStandard.Testing.Playwright.Reqnroll.Extensions;
-using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions;
+using AlmostCoherent.Testing.Hosting.Domain.Abstractions;
+using AlmostCoherent.Testing.Hosting.Infrastructure;
+using AlmostCoherent.Testing.Hosting.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Playwright.Application.Services;
+using AlmostCoherent.Testing.Playwright.Extensions;
+using AlmostCoherent.Testing.Playwright.Reqnroll.Extensions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Extensions;
 using Reqnroll;
 
-namespace NorthStandard.Testing.Demos.Web.Acceptance
+namespace AlmostCoherent.Testing.Demos.Web.Acceptance
 {
     [Binding]
     public class Bootstrap
@@ -20,7 +21,7 @@ namespace NorthStandard.Testing.Demos.Web.Acceptance
         [BeforeTestRun(Order = 0)]
         public static void BeforeTestRunSetupServices()
         {
-            var config = BuildConfiguration();
+            var config = ConfigurationExtensions.BuildTestConfiguration();
             profile = new WebTestingProfile(config);
 
             hostManager = new WebTestingHostManager(
@@ -41,7 +42,7 @@ namespace NorthStandard.Testing.Demos.Web.Acceptance
                 .AddLogging()
                 .AddSingleton(config)
                 .AddSingleton(urlBuilder)
-                .AddPlaywrightForReqnroll(config)
+                .AddPlaywrightForReqnroll()
                 .AddCoreScreenPlayFramework()
                 .AddScreenPlayFrameworkFromAssembly(typeof(Bootstrap).Assembly);
 
@@ -63,12 +64,6 @@ namespace NorthStandard.Testing.Demos.Web.Acceptance
             }
         }
 
-        private static IConfiguration BuildConfiguration()
-        {
-            return new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: true)
-                .AddEnvironmentVariables()
-                .Build();
-        }
+
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Api.Contexts
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Api.Contexts
 {
     public class ApiRequestContext : IContext
     {

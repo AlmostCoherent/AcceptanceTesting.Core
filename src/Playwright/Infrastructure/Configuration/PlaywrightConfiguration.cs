@@ -1,8 +1,8 @@
-namespace NorthStandard.Testing.Playwright.Infrastructure.Configuration
+namespace AlmostCoherent.Testing.Playwright.Infrastructure.Configuration
 {
     public class PlaywrightConfiguration
     {
-        public bool EnableHeadlessBrowser { get; set; }
+        public bool EnableHeadlessBrowser { get; set; } = true;
         public int WaitTimeOut { get; set; } = 10000;
         public bool EnableTracing { get; set; }
         public bool EnableCaptureForFailingTests { get; set; } = true;

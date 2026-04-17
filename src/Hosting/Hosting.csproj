@@ -4,9 +4,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <RootNamespace>NorthStandard.Testing.Hosting</RootNamespace>
+    <DefaultNamespace>AlmostCoherent.Testing.Hosting</DefaultNamespace>
 
-    <PackageId>NorthStandard.Testing.Hosting</PackageId>
+    <PackageId>AlmostCoherent.Testing.Hosting</PackageId>
     <Description>This project contains testing utilities used for hosting applications.</Description>
     <PackageTags>testing;</PackageTags>
     <IsPackable>true</IsPackable>

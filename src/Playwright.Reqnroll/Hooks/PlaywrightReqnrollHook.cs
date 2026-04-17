@@ -1,9 +1,9 @@
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
 using Reqnroll;
 using System;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Playwright.Reqnroll.Hooks;
+namespace AlmostCoherent.Testing.Playwright.Reqnroll.Hooks;
 
 /// <summary>
 /// Reqnroll hooks for Playwright lifecycle management

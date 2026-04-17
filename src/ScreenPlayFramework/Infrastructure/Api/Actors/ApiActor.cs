@@ -5,11 +5,11 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using NorthStandard.Testing.Playwright.Application.Services;
-using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
-using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Api.Contexts;
+using AlmostCoherent.Testing.Playwright.Application.Services;
+using AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Api.Contexts;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Api.Actors
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Api.Actors
 {
     public class ApiActor(UrlBuilder urlBuilder, ApiContext apiContextProvider, ApiRequestContext apiRequestContext, ILogger<ApiActor> logger) : IActor
     {

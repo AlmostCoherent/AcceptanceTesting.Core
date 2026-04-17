@@ -1,8 +1,8 @@
 using FluentAssertions;
-using NorthStandard.Testing.Hosting.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Hosting.Infrastructure.Configuration;
 using Xunit;
 
-namespace NorthStandard.Testing.Hosting.Tests.Configuration
+namespace AlmostCoherent.Testing.Hosting.Tests.Configuration
 {
     public class TestingProfileTests
     {

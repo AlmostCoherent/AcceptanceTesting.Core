@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsTestProject>true</IsTestProject>
-    <RootNamespace>NorthStandard.Testing.Demos.Web.Acceptance</RootNamespace>
+    <RootNamespace>AlmostCoherent.Testing.Demos.Web.Acceptance</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,5 +35,11 @@
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </ReqnrollFeatureFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json;appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Hosting.Domain.Abstractions
+namespace AlmostCoherent.Testing.Hosting.Domain.Abstractions
 {
     /// <summary>
     /// Manages web application hosting lifecycle for testing scenarios

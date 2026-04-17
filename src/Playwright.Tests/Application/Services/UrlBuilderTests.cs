@@ -1,9 +1,9 @@
 using FluentAssertions;
-using NorthStandard.Testing.Playwright.Application.Services;
+using AlmostCoherent.Testing.Playwright.Application.Services;
 using System;
 using Xunit;
 
-namespace NorthStandard.Testing.Playwright.Tests.Application.Services
+namespace AlmostCoherent.Testing.Playwright.Tests.Application.Services
 {
     public class UrlBuilderTests
     {

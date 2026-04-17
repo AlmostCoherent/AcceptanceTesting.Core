@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.Hosting.Domain.Abstractions;
+using AlmostCoherent.Testing.Hosting.Domain.Abstractions;
 
-namespace NorthStandard.Testing.Hosting.Infrastructure.Configuration
+namespace AlmostCoherent.Testing.Hosting.Infrastructure.Configuration
 {
 
     public class WebTestingProfile : IAppProfile

@@ -11,7 +11,7 @@
 #region Designer generated code
 #pragma warning disable
 using Reqnroll;
-namespace NorthStandard.Testing.Demos.Api.Acceptance.Specs.Features
+namespace AlmostCoherent.Testing.Demos.Api.Acceptance.Specs.Features
 {
     
     

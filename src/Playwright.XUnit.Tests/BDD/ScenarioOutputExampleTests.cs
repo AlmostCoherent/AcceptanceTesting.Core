@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using NorthStandard.Testing.Playwright.XUnit.BDD;
+using AlmostCoherent.Testing.Playwright.XUnit.BDD;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace NorthStandard.Testing.Playwright.XUnit.Tests.BDD;
+namespace AlmostCoherent.Testing.Playwright.XUnit.Tests.BDD;
 
 public class ScenarioOutputExampleTests
 {

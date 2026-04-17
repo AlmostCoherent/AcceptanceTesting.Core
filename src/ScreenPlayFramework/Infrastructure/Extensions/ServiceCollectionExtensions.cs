@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {

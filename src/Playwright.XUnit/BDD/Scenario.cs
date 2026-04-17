@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xunit.Abstractions;
 
-namespace NorthStandard.Testing.Playwright.XUnit.BDD;
+namespace AlmostCoherent.Testing.Playwright.XUnit.BDD;
 
 /// <summary>
 /// Fluent API for building BDD-style test scenarios

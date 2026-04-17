@@ -1,11 +1,11 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Extensions;
 using System.Linq;
 using System.Reflection;
 using Xunit;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Tests.Infrastructure.Extensions
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Tests.Infrastructure.Extensions
 {
     // Simple test interfaces for testing purposes
     public interface ISimpleTestInterface { }

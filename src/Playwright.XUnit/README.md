@@ -1,11 +1,11 @@
-# NorthStandard.Testing.Playwright.XUnit
+# AlmostCoherent.Testing.Playwright.XUnit
 
-xUnit integration package for NorthStandard.Testing.Playwright. This package provides fixtures and lifecycle management for running Playwright tests with xUnit.
+xUnit integration package for AlmostCoherent.Testing.Playwright. This package provides fixtures and lifecycle management for running Playwright tests with xUnit.
 
 ## Installation
 
 ```bash
-dotnet add package NorthStandard.Testing.Playwright.XUnit
+dotnet add package AlmostCoherent.Testing.Playwright.XUnit
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ dotnet add package NorthStandard.Testing.Playwright.XUnit
 Use `PlaywrightPageFixture` to create a fresh page for each test class:
 
 ```csharp
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
-using NorthStandard.Testing.Playwright.XUnit.Fixtures;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.XUnit.Fixtures;
 using Xunit;
 
 public class MyTests : IClassFixture<PlaywrightPageFixture>
@@ -45,7 +45,7 @@ public class MyTests : IClassFixture<PlaywrightPageFixture>
 Use `PlaywrightBrowserFixture` to share a browser across multiple test classes:
 
 ```csharp
-using NorthStandard.Testing.Playwright.XUnit.Fixtures;
+using AlmostCoherent.Testing.Playwright.XUnit.Fixtures;
 using Xunit;
 
 // Define collection
@@ -99,7 +99,7 @@ public class SecondTests
 Use `PlaywrightFixture` for complete isolation with browser and page per test class:
 
 ```csharp
-using NorthStandard.Testing.Playwright.XUnit.Fixtures;
+using AlmostCoherent.Testing.Playwright.XUnit.Fixtures;
 using Xunit;
 
 public class IsolatedTests : IClassFixture<PlaywrightFixture>
@@ -128,7 +128,7 @@ Configure Playwright in your test project setup or constructor:
 ```csharp
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.Playwright.XUnit.Extensions;
+using AlmostCoherent.Testing.Playwright.XUnit.Extensions;
 
 public class TestStartup
 {
@@ -166,11 +166,11 @@ Add configuration to your `appsettings.json`:
 
 ## Dependencies
 
-- NorthStandard.Testing.Playwright (core package)
+- AlmostCoherent.Testing.Playwright (core package)
 - xUnit 2.9.0+
 - .NET 8.0+
 
 ## Related Packages
 
-- **NorthStandard.Testing.Playwright**: Core Playwright testing utilities (framework-agnostic)
-- **NorthStandard.Testing.Playwright.Reqnroll**: Reqnroll/BDD integration
+- **AlmostCoherent.Testing.Playwright**: Core Playwright testing utilities (framework-agnostic)
+- **AlmostCoherent.Testing.Playwright.Reqnroll**: Reqnroll/BDD integration

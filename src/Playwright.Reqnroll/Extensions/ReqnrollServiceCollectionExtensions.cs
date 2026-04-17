@@ -1,8 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.Playwright.Extensions;
+using AlmostCoherent.Testing.Playwright.Extensions;
+using AlmostCoherent.Testing.Playwright.Infrastructure.Configuration;
 
-namespace NorthStandard.Testing.Playwright.Reqnroll.Extensions;
+namespace AlmostCoherent.Testing.Playwright.Reqnroll.Extensions;
 
 /// <summary>
 /// Extension methods for registering Playwright with Reqnroll
@@ -10,17 +11,19 @@ namespace NorthStandard.Testing.Playwright.Reqnroll.Extensions;
 public static class ReqnrollServiceCollectionExtensions
 {
     /// <summary>
-    /// Adds Playwright services configured for Reqnroll
+    /// Adds Playwright services configured for Reqnroll with automatic configuration loading.
     /// </summary>
-    public static IServiceCollection AddPlaywrightForReqnroll(
-        this IServiceCollection services, 
-        IConfiguration configuration)
+    /// <remarks>
+    /// Automatically loads configuration from appsettings.json in the output directory.
+    /// Configuration is loaded with environment-specific overrides based on DOTNET_ENVIRONMENT or ASPNETCORE_ENVIRONMENT.
+    /// </remarks>
+    public static IServiceCollection AddPlaywrightForReqnroll(this IServiceCollection services)
     {
-        // Register core Playwright services
-        services.AddPlaywrightServices(configuration);
+        // Register core Playwright services with automatic configuration
+        services.AddPlaywrightServices();
         
         // Reqnroll hooks are auto-discovered, no additional registration needed
         
         return services;
     }
-}
+}}

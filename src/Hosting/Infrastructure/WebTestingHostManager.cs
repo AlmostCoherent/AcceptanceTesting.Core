@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Builder;
-using NorthStandard.Testing.Hosting.Domain.Abstractions;
-using NorthStandard.Testing.Hosting.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Hosting.Domain.Abstractions;
+using AlmostCoherent.Testing.Hosting.Infrastructure.Configuration;
 using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Hosting.Infrastructure
+namespace AlmostCoherent.Testing.Hosting.Infrastructure
 {
     /// <summary>
     /// Manages web application hosting for testing, handling both local and remote URLs

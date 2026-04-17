@@ -1,9 +1,9 @@
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Playwright.Infrastructure.Lifecycle;
+namespace AlmostCoherent.Testing.Playwright.Infrastructure.Lifecycle;
 
 /// <summary>
 /// Default implementation of Playwright lifecycle management

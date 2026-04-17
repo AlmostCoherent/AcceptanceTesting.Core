@@ -1,22 +1,28 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Playwright;
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
-using NorthStandard.Testing.Playwright.Infrastructure.Configuration;
-using NorthStandard.Testing.Playwright.Infrastructure.Lifecycle;
-using NorthStandard.Testing.Playwright.Infrastructure.Providers;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Playwright.Infrastructure.Lifecycle;
+using AlmostCoherent.Testing.Playwright.Infrastructure.Providers;
 
-namespace NorthStandard.Testing.Playwright.Extensions;
+namespace AlmostCoherent.Testing.Playwright.Extensions;
 
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Registers Playwright services with the provided configuration
+    /// Registers Playwright services using default configuration loading.
+    /// Automatically builds configuration from appsettings.json in the output directory.
     /// </summary>
-    public static IServiceCollection AddPlaywrightServices(
-    this IServiceCollection services,
-    IConfiguration configuration)
+    /// <remarks>
+    /// Configuration is loaded automatically from appsettings.json with environment-specific overrides.
+    /// The environment is detected from DOTNET_ENVIRONMENT or ASPNETCORE_ENVIRONMENT variables.
+    /// </remarks>
+    public static IServiceCollection AddPlaywrightServices(this IServiceCollection services)
     {
+        var configuration = ConfigurationExtensions.BuildTestConfiguration();
+        services.AddSingleton(configuration);
+        
         var playwrightConfig = configuration.GetPlaywrightConfiguration();
         services.AddSingleton(playwrightConfig);
         

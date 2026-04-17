@@ -1,4 +1,4 @@
-namespace NorthStandard.Testing.Hosting.Infrastructure.Configuration
+namespace AlmostCoherent.Testing.Hosting.Infrastructure.Configuration
 {
     public class WebTestingProfileOptions
     {

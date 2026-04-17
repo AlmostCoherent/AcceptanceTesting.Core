@@ -1,9 +1,9 @@
-using NorthStandard.Testing.Demos.Web.Acceptance.Engine.Home.Actors;
-using NorthStandard.Testing.Demos.Web.Acceptance.Engine.Home.Validators;
-using NorthStandard.Testing.Playwright.XUnit.BDD;
+using AlmostCoherent.Testing.Demos.Web.Acceptance.Engine.Home.Actors;
+using AlmostCoherent.Testing.Demos.Web.Acceptance.Engine.Home.Validators;
+using AlmostCoherent.Testing.Playwright.XUnit.BDD;
 using Xunit;
 
-namespace NorthStandard.Testing.Demos.Web.Acceptance.Specs.Tests;
+namespace AlmostCoherent.Testing.Demos.Web.Acceptance.Specs.Tests;
 
 [Collection("WebServer")]
 public class HomeTests

@@ -1,9 +1,9 @@
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
 using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace NorthStandard.Testing.Playwright.XUnit.Fixtures;
+namespace AlmostCoherent.Testing.Playwright.XUnit.Fixtures;
 
 /// <summary>
 /// xUnit class fixture combining browser and page lifecycle management.

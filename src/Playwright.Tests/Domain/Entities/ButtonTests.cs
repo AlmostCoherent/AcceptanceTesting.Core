@@ -1,12 +1,12 @@
 using FluentAssertions;
 using Microsoft.Playwright;
 using Moq;
-using NorthStandard.Testing.Playwright.Domain.Entities;
+using AlmostCoherent.Testing.Playwright.Domain.Entities;
 using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace NorthStandard.Testing.Playwright.Tests.Domain.Entities
+namespace AlmostCoherent.Testing.Playwright.Tests.Domain.Entities
 {
     public class ButtonTests
     {

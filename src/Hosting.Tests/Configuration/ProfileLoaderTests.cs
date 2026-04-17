@@ -1,11 +1,11 @@
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
-using NorthStandard.Testing.Hosting.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Hosting.Infrastructure.Configuration;
 using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace NorthStandard.Testing.Hosting.Tests.Configuration
+namespace AlmostCoherent.Testing.Hosting.Tests.Configuration
 {
     public class ProfileLoaderTests
     {

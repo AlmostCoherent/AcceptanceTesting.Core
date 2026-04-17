@@ -1,5 +1,5 @@
-using NorthStandard.Testing.Hosting.Domain.Abstractions;
-using NorthStandard.Testing.Hosting.Infrastructure.Angular;
+using AlmostCoherent.Testing.Hosting.Domain.Abstractions;
+using AlmostCoherent.Testing.Hosting.Infrastructure.Angular;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace NorthStandard.Testing.Hosting.Infrastructure.Angular
+namespace AlmostCoherent.Testing.Hosting.Infrastructure.Angular
 {
     /// <summary>
     /// Manages the Angular development server lifecycle for acceptance tests.

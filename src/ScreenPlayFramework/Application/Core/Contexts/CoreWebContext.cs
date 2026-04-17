@@ -1,6 +1,6 @@
-﻿using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
+﻿using AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Application.Core.Contexts
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Application.Core.Contexts
 {
     public class CoreWebContext : IContext
     {

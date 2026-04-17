@@ -1,9 +1,9 @@
-﻿using NorthStandard.Testing.Playwright.Application.Services;
-using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
+﻿using AlmostCoherent.Testing.Playwright.Application.Services;
+using AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions;
 using System;
 using System.Net.Http;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Api.Contexts
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Api.Contexts
 {
     public class ApiContext(UrlBuilder urlBuilder) : IDisposable, IContext
     {

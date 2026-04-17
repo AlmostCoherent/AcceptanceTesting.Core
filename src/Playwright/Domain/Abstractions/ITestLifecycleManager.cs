@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.Playwright.Domain.Abstractions;
+namespace AlmostCoherent.Testing.Playwright.Domain.Abstractions;
 
 /// <summary>
 /// Manages Playwright lifecycle for test execution

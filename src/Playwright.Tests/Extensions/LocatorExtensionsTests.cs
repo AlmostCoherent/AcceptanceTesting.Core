@@ -1,11 +1,11 @@
 using FluentAssertions;
 using Microsoft.Playwright;
 using Moq;
-using NorthStandard.Testing.Playwright.Domain.Entities;
-using NorthStandard.Testing.Playwright.Extensions;
+using AlmostCoherent.Testing.Playwright.Domain.Entities;
+using AlmostCoherent.Testing.Playwright.Extensions;
 using Xunit;
 
-namespace NorthStandard.Testing.Playwright.Tests.Extensions
+namespace AlmostCoherent.Testing.Playwright.Tests.Extensions
 {
     public class LocatorExtensionsTests
     {

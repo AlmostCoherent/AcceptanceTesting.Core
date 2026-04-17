@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsTestProject>true</IsTestProject>
-    <RootNamespace>NorthStandard.Testing.Demos.Api.Acceptance</RootNamespace>
+    <RootNamespace>AlmostCoherent.Testing.Demos.Api.Acceptance</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

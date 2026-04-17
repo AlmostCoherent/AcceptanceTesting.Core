@@ -1,4 +1,4 @@
-﻿namespace NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions
+﻿namespace AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions
 {
     /// <summary>
     /// Marker interface for a testing engine actor.

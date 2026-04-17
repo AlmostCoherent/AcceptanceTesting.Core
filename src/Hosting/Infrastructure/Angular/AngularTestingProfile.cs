@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.Hosting.Domain.Abstractions;
+using AlmostCoherent.Testing.Hosting.Domain.Abstractions;
 using System;
 
-namespace NorthStandard.Testing.Hosting.Infrastructure.Angular
+namespace AlmostCoherent.Testing.Hosting.Infrastructure.Angular
 {
     public class AngularTestingProfile : IAppProfile
     {

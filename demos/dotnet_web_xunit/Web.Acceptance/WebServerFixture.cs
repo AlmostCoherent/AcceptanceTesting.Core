@@ -1,17 +1,17 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NorthStandard.Testing.Hosting.Domain.Abstractions;
-using NorthStandard.Testing.Hosting.Infrastructure;
-using NorthStandard.Testing.Hosting.Infrastructure.Configuration;
-using NorthStandard.Testing.Playwright.Application.Services;
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
-using NorthStandard.Testing.Playwright.Extensions;
-using NorthStandard.Testing.Playwright.XUnit.Fixtures;
-using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Extensions;
+using AlmostCoherent.Testing.Hosting.Domain.Abstractions;
+using AlmostCoherent.Testing.Hosting.Infrastructure;
+using AlmostCoherent.Testing.Hosting.Infrastructure.Configuration;
+using AlmostCoherent.Testing.Playwright.Application.Services;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.Extensions;
+using AlmostCoherent.Testing.Playwright.XUnit.Fixtures;
+using AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Extensions;
 using Xunit;
 
-namespace NorthStandard.Testing.Demos.Web.Acceptance;
+namespace AlmostCoherent.Testing.Demos.Web.Acceptance;
 
 /// <summary>
 /// xUnit collection fixture to manage web server and Playwright for all tests

@@ -28,11 +28,11 @@ This repository provides multiple NuGet packages:
 | Package | Description | Use Case |
 |---------|-------------|----------|
 | `AlmostCoherent.AcceptanceTesting.Core` | Core abstractions and patterns | Base framework for any testing project |
-| `NorthStandard.Testing.ScreenPlayFramework` | ScreenPlay pattern implementation | Structured test automation |
-| `NorthStandard.Testing.Playwright` | Playwright utilities and extensions | Web UI testing |
-| `NorthStandard.Testing.Playwright.Reqnroll` | Reqnroll integration for Playwright | BDD with Gherkin syntax |
-| `NorthStandard.Testing.Playwright.XUnit` | xUnit integration with BDD support | xUnit test framework with fluent scenarios |
-| `NorthStandard.Testing.Hosting` | Application hosting helpers | Test environment management |
+| `AlmostCoherent.Testing.ScreenPlayFramework` | ScreenPlay pattern implementation | Structured test automation |
+| `AlmostCoherent.Testing.Playwright` | Playwright utilities and extensions | Web UI testing |
+| `AlmostCoherent.Testing.Playwright.Reqnroll` | Reqnroll integration for Playwright | BDD with Gherkin syntax |
+| `AlmostCoherent.Testing.Playwright.XUnit` | xUnit integration with BDD support | xUnit test framework with fluent scenarios |
+| `AlmostCoherent.Testing.Hosting` | Application hosting helpers | Test environment management |
 
 ## 🚀 Quick Start
 
@@ -43,19 +43,19 @@ This repository provides multiple NuGet packages:
 dotnet add package AlmostCoherent.AcceptanceTesting.Core
 
 # Add ScreenPlay pattern support
-dotnet add package NorthStandard.Testing.ScreenPlayFramework
+dotnet add package AlmostCoherent.Testing.ScreenPlayFramework
 
 # For web testing with Playwright
-dotnet add package NorthStandard.Testing.Playwright
+dotnet add package AlmostCoherent.Testing.Playwright
 
 # For BDD with Reqnroll
-dotnet add package NorthStandard.Testing.Playwright.Reqnroll
+dotnet add package AlmostCoherent.Testing.Playwright.Reqnroll
 
 # For xUnit with fluent BDD scenarios
-dotnet add package NorthStandard.Testing.Playwright.XUnit
+dotnet add package AlmostCoherent.Testing.Playwright.XUnit
 
 # For application hosting in tests
-dotnet add package NorthStandard.Testing.Hosting
+dotnet add package AlmostCoherent.Testing.Hosting
 ```
 
 ### From GitHub Packages
@@ -397,6 +397,137 @@ Both demos include comprehensive test suites demonstrating:
 | **Context Sharing** | ScenarioContext | Dictionary-based | DI container |
 | **Error Messages** | Step descriptions | Rich step context | Standard |
 | **Host Management** | WebTestingHostManager | WebTestingHostManager | N/A |
+
+## ⚙️ Configuration
+
+### Playwright Configuration
+
+The `Playwright` section in your `appsettings.json` controls browser automation behavior:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Playwright": {
+    "EnableHeadlessBrowser": true,
+    "WaitTimeOut": 30000,
+    "EnableTracing": false,
+    "EnableCaptureForFailingTests": true,
+    "CaptureScreenshots": true,
+    "FullPageScreenshots": false,
+    "ArtifactsPath": "TestResults",
+    "TracingOptions": {
+      "Screenshots": false,
+      "Snapshots": false,
+      "Sources": false
+    }
+  }
+}
+```
+
+#### Configuration Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| **EnableHeadlessBrowser** | `bool` | `true` | Runs browser in headless mode (no UI). Set to `false` to see the browser window during test execution for debugging. |
+| **WaitTimeOut** | `int` | `10000` | Global timeout in milliseconds for wait operations and navigation. Increase for slower environments or network conditions. |
+| **EnableTracing** | `bool` | `false` | Records Playwright trace files for failed tests. Provides detailed information about what happened during test execution (useful for debugging). |
+| **EnableCaptureForFailingTests** | `bool` | `true` | Automatically captures artifacts (screenshots, traces) when tests fail. Helps with post-test analysis. |
+| **CaptureScreenshots** | `bool` | `false` | Takes screenshots at key test moments. Generates `.png` files in the artifacts directory. |
+| **FullPageScreenshots** | `bool` | `false` | Captures full page height instead of viewport height. Only applies when `CaptureScreenshots` is `true`. |
+| **ArtifactsPath** | `string` | `"TestResults"` | Directory where test artifacts (screenshots, traces, videos) are saved. Create this directory before running tests. |
+| **TracingOptions.Screenshots** | `bool` | `false` | Include screenshots in trace files. Requires `EnableTracing: true`. Increases trace file size. |
+| **TracingOptions.Snapshots** | `bool` | `false` | Include DOM snapshots in trace files. Useful for analyzing page state at each step. Requires `EnableTracing: true`. |
+| **TracingOptions.Sources** | `bool` | `false` | Include source files in trace files. Allow inspection of JavaScript during playback. Requires `EnableTracing: true`. |
+
+#### Common Configuration Scenarios
+
+**Development/Debugging** (See the browser while tests run):
+```json
+{
+  "Playwright": {
+    "EnableHeadlessBrowser": false,
+    "WaitTimeOut": 30000,
+    "EnableTracing": true,
+    "EnableCaptureForFailingTests": true,
+    "CaptureScreenshots": true,
+    "TracingOptions": {
+      "Screenshots": true,
+      "Snapshots": true,
+      "Sources": false
+    }
+  }
+}
+```
+
+**CI/CD Pipeline** (Fast, no UI, minimal artifacts):
+```json
+{
+  "Playwright": {
+    "EnableHeadlessBrowser": true,
+    "WaitTimeOut": 15000,
+    "EnableTracing": false,
+    "EnableCaptureForFailingTests": true,
+    "CaptureScreenshots": false
+  }
+}
+```
+
+**Slow Network/Environment** (Longer timeouts, more diagnostics):
+```json
+{
+  "Playwright": {
+    "EnableHeadlessBrowser": true,
+    "WaitTimeOut": 60000,
+    "EnableTracing": true,
+    "EnableCaptureForFailingTests": true,
+    "CaptureScreenshots": true,
+    "TracingOptions": {
+      "Screenshots": true,
+      "Snapshots": false,
+      "Sources": false
+    }
+  }
+}
+```
+
+#### Accessing Configuration in Code
+
+```csharp
+// Bootstrap.cs in Reqnroll test projects
+private static IConfiguration BuildConfiguration()
+{
+    // appsettings.json is copied to the bin output directory via csproj
+    var appsettingsPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+    
+    return new ConfigurationBuilder()
+        .AddJsonFile(appsettingsPath, optional: false)
+        .AddEnvironmentVariables()
+        .Build();
+}
+
+// Access Playwright configuration
+var playwrightConfig = configuration.GetPlaywrightConfiguration("Playwright");
+Console.WriteLine($"Headless: {playwrightConfig.EnableHeadlessBrowser}");
+Console.WriteLine($"Timeout: {playwrightConfig.WaitTimeOut}ms");
+```
+
+#### Important Notes
+
+- **appsettings.json must be copied to bin**: Ensure your `.csproj` includes:
+  ```xml
+  <ItemGroup>
+    <None Update="appsettings.json;appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  ```
+- **Environment Variables**: You can override any setting via environment variables (e.g., `Playwright__EnableHeadlessBrowser=false`)
+- **Artifacts Directory**: Must exist or be created before test execution. Use `Directory.CreateDirectory(config.Playwright.ArtifactsPath)` in your test bootstrap.
 
 ## 🏗️ Building from Source
 

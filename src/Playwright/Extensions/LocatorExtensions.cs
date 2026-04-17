@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
-using NorthStandard.Testing.Playwright.Domain.Entities;
+using AlmostCoherent.Testing.Playwright.Domain.Entities;
 
-namespace NorthStandard.Testing.Playwright.Extensions
+namespace AlmostCoherent.Testing.Playwright.Extensions
 {
   public static class LocatorExtensions
   {

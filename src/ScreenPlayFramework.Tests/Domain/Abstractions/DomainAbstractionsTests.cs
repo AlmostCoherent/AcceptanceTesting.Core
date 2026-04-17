@@ -1,8 +1,8 @@
 using FluentAssertions;
-using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions;
 using Xunit;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Tests.Domain.Abstractions
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Tests.Domain.Abstractions
 {
     // Test implementations for interface validation
     public class TestActor : IActor { }
@@ -72,11 +72,11 @@ namespace NorthStandard.Testing.ScreenPlayFramework.Tests.Domain.Abstractions
         public void AllAbstractions_AreInCorrectNamespace()
         {
             // Assert
-            typeof(IActor).Namespace.Should().Be("NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions");
-            typeof(IContext).Namespace.Should().Be("NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions");
-            typeof(IOrchestrator).Namespace.Should().Be("NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions");
-            typeof(IValidator).Namespace.Should().Be("NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions");
-            typeof(IPage).Namespace.Should().Be("NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions");
+            typeof(IActor).Namespace.Should().Be("AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions");
+            typeof(IContext).Namespace.Should().Be("AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions");
+            typeof(IOrchestrator).Namespace.Should().Be("AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions");
+            typeof(IValidator).Namespace.Should().Be("AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions");
+            typeof(IPage).Namespace.Should().Be("AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions");
         }
 
         [Fact]

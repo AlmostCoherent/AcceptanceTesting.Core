@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace NorthStandard.Testing.Playwright.Infrastructure.Configuration
+namespace AlmostCoherent.Testing.Playwright.Infrastructure.Configuration
 {
     public static class PlaywrightConfigurationExtensions
     {

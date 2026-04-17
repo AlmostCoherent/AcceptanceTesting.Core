@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
 using System.Threading.Tasks;
 
-namespace NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Validation
+namespace AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Validation
 {
     public abstract class PlaywrightValidatorBase
     {

@@ -1,4 +1,4 @@
-﻿namespace NorthStandard.Testing.Playwright.Application.Services
+﻿namespace AlmostCoherent.Testing.Playwright.Application.Services
 {
     /// <summary>
     /// Builds a url from a given base url and a relative one

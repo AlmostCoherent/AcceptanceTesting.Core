@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>disable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<RootNamespace>NorthStandard.Testing.ScreenPlayFramework</RootNamespace>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DefaultNamespace>AlmostCoherent.Testing.ScreenPlayFramework</DefaultNamespace>
 
-		<!-- NuGet metadata -->
-		<PackageId>NorthStandard.Testing.ScreenPlayFramework</PackageId>
-		<Description>This project contains a testing framework for .NET applications. This is based on the more traditional ScreenPlay methodology of testing.</Description>
-		<PackageTags>testing;screenplay;</PackageTags>
-		<IsPackable>true</IsPackable>
-	</PropertyGroup>
+    <!-- NuGet metadata -->
+    <PackageId>AlmostCoherent.Testing.ScreenPlayFramework</PackageId>
+    <Description>This project contains a testing framework for .NET applications. This is based on the more traditional ScreenPlay methodology of testing.</Description>
+    <PackageTags>testing;screenplay;</PackageTags>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />

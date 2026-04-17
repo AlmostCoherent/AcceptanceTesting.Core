@@ -1,11 +1,11 @@
-# NorthStandard.Testing.Playwright.Reqnroll
+# AlmostCoherent.Testing.Playwright.Reqnroll
 
-Reqnroll integration package for NorthStandard.Testing.Playwright. This package provides hooks and lifecycle management for running Playwright tests with Reqnroll (BDD framework).
+Reqnroll integration package for AlmostCoherent.Testing.Playwright. This package provides hooks and lifecycle management for running Playwright tests with Reqnroll (BDD framework).
 
 ## Installation
 
 ```bash
-dotnet add package NorthStandard.Testing.Playwright.Reqnroll
+dotnet add package AlmostCoherent.Testing.Playwright.Reqnroll
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ In your Reqnroll test project, register Playwright services in your DI container
 ```csharp
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NorthStandard.Testing.Playwright.Reqnroll.Extensions;
+using AlmostCoherent.Testing.Playwright.Reqnroll.Extensions;
 
 [Binding]
 public class Hooks
@@ -48,7 +48,7 @@ Add Playwright configuration to your `appsettings.json`:
 ### 3. Use in Step Definitions
 
 ```csharp
-using NorthStandard.Testing.Playwright.Domain.Abstractions;
+using AlmostCoherent.Testing.Playwright.Domain.Abstractions;
 
 [Binding]
 public class StepDefinitions
@@ -82,10 +82,10 @@ The hooks are automatically discovered by Reqnroll and executed at the appropria
 
 ## Dependencies
 
-- NorthStandard.Testing.Playwright (core package)
+- AlmostCoherent.Testing.Playwright (core package)
 - Reqnroll 3.3.0+
 - .NET 8.0+
 
 ## Related Packages
 
-- **NorthStandard.Testing.Playwright**: Core Playwright testing utilities (framework-agnostic)
+- **AlmostCoherent.Testing.Playwright**: Core Playwright testing utilities (framework-agnostic)

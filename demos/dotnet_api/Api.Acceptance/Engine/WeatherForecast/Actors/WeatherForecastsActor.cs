@@ -1,6 +1,6 @@
-﻿using NorthStandard.Testing.Demos.Api.Acceptance.Engine.WeatherForecast.Contexts;
-using NorthStandard.Testing.ScreenPlayFramework.Domain.Abstractions;
-using NorthStandard.Testing.ScreenPlayFramework.Infrastructure.Api.Actors;
+﻿using AcceptanceTesting.Api.Acceptance.Engine.WeatherForecast.Contexts;
+using AlmostCoherent.Testing.ScreenPlayFramework.Domain.Abstractions;
+using AlmostCoherent.Testing.ScreenPlayFramework.Infrastructure.Api.Actors;
 
 namespace NorthStandard.Testing.Demos.Api.Acceptance.Engine.WeatherForecast.Actors
 {
